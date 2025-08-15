@@ -1,26 +1,44 @@
 import React from "react";
 
 const Nosotros = () => (
-  <section className="max-w-5xl mx-auto py-24 px-4">
+  <section className="relative min-h-screen flex flex-col justify-center items-center px-4 py-24 overflow-hidden">
+    {/* Fondo de imagen detrás de todo */}
+    <div
+      className="absolute inset-0 w-full h-full -z-10"
+      style={{
+        backgroundImage: "url('/OZZimages/local2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        filter: "brightness(0.55)",
+      }}
+    >
+      {/* Overlay oscuro para mejorar contraste */}
+      <div className="absolute inset-0 bg-black/20"></div>
+    </div>
     {/* Espacio extra para evitar que el navbar tape el título */}
     <div className="mt-20"></div>
-    <h1 className="text-5xl md:text-6xl font-extrabold text-blue-900 mb-8 text-center drop-shadow-lg tracking-tight animate-fade-in">
+    <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-8 text-center drop-shadow-lg tracking-tight animate-fade-in">
       Sobre Nosotros
     </h1>
-    {/* Video presentación principal */}
-    <div className="flex justify-center mb-12">
+    {/* Video presentación principal en loop y responsive */}
+    <div className="flex justify-center mb-12 w-full">
       <video
         src="/OZZvideos/holaSoy.mp4"
         controls
-        className="rounded-2xl shadow-2xl w-full max-w-3xl border-4 border-blue-900 bg-black"
+        loop
+        autoPlay
+        muted
+        className="rounded-2xl shadow-2xl w-full max-w-3xl border-4 border-blue-900 bg-black object-contain md:object-cover"
         poster="/LOGO/Log.OZZ.png"
+        style={{ maxHeight: "320px" }}
       >
         Tu navegador no soporta el video.
       </video>
     </div>
     {/* Galería profesional del local */}
-    <div className="mb-14">
-      <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center animate-fade-in delay-200">
+    <div className="mb-14 w-full">
+      <h2 className="text-3xl font-bold text-white mb-6 text-center animate-fade-in delay-200 drop-shadow-lg">
         Nuestro Local & Comunidad
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -28,7 +46,7 @@ const Nosotros = () => (
           <img
             src="/OZZimages/local2.jpg"
             alt="Local OZZcycling con ciclistas"
-            className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-56 md:h-72 object-contain md:object-cover transition-transform duration-500 group-hover:scale-105 bg-black"
           />
           <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-blue-900/80 to-transparent px-4 py-2 text-white text-lg font-semibold opacity-90">
             Comunidad OZZcycling
@@ -38,7 +56,7 @@ const Nosotros = () => (
           <img
             src="/OZZimages/local1.jpg"
             alt="Local OZZcycling con ciclistas"
-            className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-56 md:h-72 object-contain md:object-cover transition-transform duration-500 group-hover:scale-105 bg-black"
           />
           <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-blue-900/80 to-transparent px-4 py-2 text-white text-lg font-semibold opacity-90">
             Local Premium
@@ -50,7 +68,10 @@ const Nosotros = () => (
           <video
             src="/OZZvideos/ozzlocal.mp4"
             controls
-            className="w-full h-72 object-cover bg-black transition-transform duration-500 group-hover:scale-105"
+            loop
+            autoPlay
+            muted
+            className="w-full h-56 md:h-72 object-contain md:object-cover bg-black transition-transform duration-500 group-hover:scale-105"
             poster="/LOGO/Log.OZZ.png"
           >
             Tu navegador no soporta el video.
@@ -63,7 +84,10 @@ const Nosotros = () => (
           <video
             src="/OZZvideos/local.mp4"
             controls
-            className="w-full h-72 object-cover bg-black transition-transform duration-500 group-hover:scale-105"
+            loop
+            autoPlay
+            muted
+            className="w-full h-56 md:h-72 object-contain md:object-cover bg-black transition-transform duration-500 group-hover:scale-105"
             poster="/LOGO/Log.OZZ.png"
           >
             Tu navegador no soporta el video.
@@ -75,8 +99,8 @@ const Nosotros = () => (
       </div>
     </div>
     {/* Info y CTA */}
-    <div className="bg-white/95 rounded-2xl shadow-2xl p-10 border border-blue-100 mt-14">
-      <p className="text-xl text-gray-800 mb-6 leading-relaxed text-center">
+    <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-10 border border-blue-100 mt-14 w-full max-w-3xl mx-auto">
+      <p className="text-xl text-blue-900 mb-6 leading-relaxed text-center">
         <span className="font-bold text-blue-900">OZZcycling</span> es una
         bicicletería de alta gama ubicada en el corazón de Buenos Aires,
         especializada en bicicletas de competición y servicio premium.
@@ -84,23 +108,23 @@ const Nosotros = () => (
       <div className="grid md:grid-cols-3 gap-8 mb-8">
         <div className="flex flex-col items-center">
           <span className="text-3xl font-bold text-blue-900 mb-2">+10 años</span>
-          <span className="text-gray-600">de experiencia</span>
+          <span className="text-blue-800">de experiencia</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-3xl font-bold text-blue-900 mb-2">+2000</span>
-          <span className="text-gray-600">bicicletas vendidas</span>
+          <span className="text-blue-800">bicicletas vendidas</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-3xl font-bold text-blue-900 mb-2">100%</span>
-          <span className="text-gray-600">clientes satisfechos</span>
+          <span className="text-blue-800">clientes satisfechos</span>
         </div>
       </div>
-      <p className="text-lg text-gray-800 mb-4 leading-relaxed text-center">
+      <p className="text-lg text-blue-900 mb-4 leading-relaxed text-center">
         Nuestro equipo está formado por apasionados del ciclismo, con años de
         experiencia y un compromiso absoluto con la calidad y la atención
         personalizada.
       </p>
-      <p className="text-lg text-gray-800 mb-4 leading-relaxed text-center">
+      <p className="text-lg text-blue-900 mb-4 leading-relaxed text-center">
         Ofrecemos las mejores marcas, asesoramiento profesional, servicio técnico
         certificado y una selección exclusiva de accesorios para que vivas la
         mejor experiencia sobre dos ruedas.
@@ -121,6 +145,14 @@ const Nosotros = () => (
       @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px);}
         to { opacity: 1; transform: translateY(0);}
+      }
+      @media (max-width: 768px) {
+        .absolute.inset-0.w-full.h-full.-z-10 {
+          background-position: top center !important;
+        }
+        video {
+          max-height: 220px !important;
+        }
       }
     `}</style>
   </section>

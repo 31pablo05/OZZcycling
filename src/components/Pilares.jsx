@@ -74,7 +74,18 @@ const pilares = [
 		),
 		title: "Accesorios y Componentes",
 		desc: "Todo lo necesario para optimizar tu rendimiento y seguridad.",
-		more: "Indumentaria, cascos, luces, ruedas y componentes premium. Todo para tu bici y tu comodidad.",
+		more: (
+			<>
+				Indumentaria, cascos, luces, ruedas y componentes premium. Todo para tu bici y tu comodidad.
+				<div className="mt-4 flex justify-center">
+					<img
+						src="/OZZimages/Zapatillas.jpg"
+						alt="Zapatillas de ciclismo"
+						className="rounded-lg shadow-md w-40 h-32 object-cover border border-blue-200"
+					/>
+				</div>
+			</>
+		),
 	},
 ];
 
