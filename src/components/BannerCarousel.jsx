@@ -49,7 +49,7 @@ const BannerCarousel = () => {
     <>
       {/* Espacio extra para que el banner no quede tapado */}
       <div className="h-24 md:h-32"></div>
-      <section className="relative h-[420px] md:h-[520px] w-full overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700">
+      <section className="relative h-[420px] md:h-[520px] w-full overflow-x-hidden overflow-hidden flex items-center justify-center bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700">
         {/* Imágenes del carrusel */}
         <div className="relative z-10 flex items-center justify-center h-full w-full">
           <div className="flex w-full h-full items-center justify-center gap-4">
