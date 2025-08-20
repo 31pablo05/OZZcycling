@@ -19,6 +19,7 @@ const Experiencia = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -26,7 +27,6 @@ const Experiencia = () => {
       const handleEnded = () => {
         setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
       };
-      
       const handlePlay = () => setIsPlaying(true);
       const handlePause = () => setIsPlaying(false);
 
@@ -52,6 +52,26 @@ const Experiencia = () => {
     }
   }, [currentVideoIndex]);
 
+  // Reproducir automáticamente cuando la sección entra en el viewport
+  useEffect(() => {
+    const section = sectionRef.current;
+    const video = videoRef.current;
+    if (!section || !video) return;
+
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [currentVideoIndex]);
+
   const handleVideoSelect = (index) => {
     setCurrentVideoIndex(index);
   };
@@ -68,7 +88,7 @@ const Experiencia = () => {
   };
 
   return (
-  <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+  <section ref={sectionRef} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       {/* Imagen de fondo principal */}
       <div className="absolute inset-0 z-0">
         <img

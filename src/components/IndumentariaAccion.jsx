@@ -13,7 +13,7 @@ const IndumentariaAccion = () => {
   const [mainIdx, setMainIdx] = useState(0);
 
   // Las imágenes secundarias
-  const secondaryImages = images.filter((_, idx) => idx !== mainIdx);
+  const secondaryImages = images.map((img, idx) => ({ ...img, idx })).filter((img) => img.idx !== mainIdx);
 
   // Cuando se hace click en una secundaria, la intercambia con la principal
   const handleCardClick = (idx) => {
@@ -32,7 +32,7 @@ const IndumentariaAccion = () => {
           autoPlay
           loop
           muted
-          className="w-full h-[calc(100vh-60px)] md:h-[calc(100vh-60px)] object-cover md:object-contain rounded-none shadow-xl bg-black"
+          className="w-full max-w-4xl h-[calc(100vh-60px)] md:h-[calc(100vh-60px)] object-cover md:object-contain rounded-none shadow-xl bg-black"
           poster="/LOGO/Log.OZZ.png"
           style={{
             maxHeight: "calc(100vh - 60px)",
@@ -48,51 +48,47 @@ const IndumentariaAccion = () => {
         </div>
         {/* Cards de indumentaria */}
         <div className="w-full max-w-5xl mx-auto mt-10 flex flex-col items-center">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 w-full">
+          <div className="flex flex-col md:grid md:grid-cols-5 gap-6 w-full">
             {/* Card principal (más grande) */}
-            <div className="md:col-span-2 flex justify-center items-center">
-              <div className="relative group w-full h-96 md:h-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#004391] bg-white cursor-pointer transition-all duration-300">
+            <div className="order-1 md:order-none md:col-span-2 flex justify-center items-center mb-6 md:mb-0">
+              <div className="relative group w-full h-80 md:h-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#004391] bg-white cursor-pointer transition-all duration-300">
                 <img
                   src={images[mainIdx].src}
                   alt={images[mainIdx].alt}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   draggable={false}
                 />
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#004391]/80 to-transparent px-4 py-3 text-white font-bold text-lg">
-                  {images[mainIdx].alt}
-                </div>
+                {/* Texto sobre la imagen principal eliminado */}
               </div>
             </div>
             {/* Cards secundarias */}
-            {secondaryImages.map((img, idx) => {
-              // El índice real en el array original
-              const realIdx = images.findIndex((i) => i.src === img.src);
-              return (
+            {secondaryImages.map((img) => (
+              <div
+                key={img.src}
+                className="flex justify-center items-center"
+              >
                 <div
-                  key={img.src}
-                  className="flex justify-center items-center"
+                  className="relative group w-full h-44 md:h-48 rounded-2xl overflow-hidden shadow-lg border-2 border-[#379299] bg-white cursor-pointer transition-all duration-300 hover:scale-105"
+                  onClick={() => handleCardClick(img.idx)}
+                  title="Ver más grande"
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`Ver ${img.alt} en grande`}
+                  onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleCardClick(img.idx)}
                 >
-                  <div
-                    className="relative group w-full h-44 md:h-48 rounded-2xl overflow-hidden shadow-lg border-2 border-[#379299] bg-white cursor-pointer transition-all duration-300 hover:scale-105"
-                    onClick={() => handleCardClick(realIdx)}
-                    title="Ver más grande"
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      draggable={false}
-                    />
-                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#379299]/80 to-transparent px-3 py-2 text-white font-semibold text-base">
-                      {img.alt}
-                    </div>
-                    <div className="absolute top-2 right-2 bg-white/80 rounded-full px-2 py-1 text-xs text-[#004391] font-bold shadow">
-                      Click para ampliar
-                    </div>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    draggable={false}
+                  />
+                  {/* Texto sobre la imagen secundaria eliminado */}
+                  <div className="hidden md:block absolute top-2 right-2 bg-white/80 rounded-full px-2 py-1 text-xs text-[#004391] font-bold shadow">
+                    Click para ampliar
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -107,12 +103,7 @@ const IndumentariaAccion = () => {
             width: 100vw !important;
             max-width: 100vw !important;
           }
-          .grid {
-            grid-template-columns: 1fr !important;
-          }
-          .md\\:col-span-2 {
-            grid-column: span 1 / span 1 !important;
-          }
+          /* Elimina escapes innecesarios, los estilos mobile ya están cubiertos por Tailwind */
         }
       `}</style>
     </section>
