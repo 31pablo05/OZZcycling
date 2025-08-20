@@ -74,7 +74,7 @@ export default function HeroSection({ onCategoryFilter }) {
 
 	return (
 		<section
-			className="relative w-full h-screen min-h-screen flex items-center overflow-hidden"
+			className=" relative w-full h-screen min-h-screen flex items-center overflow-hidden"
 			style={{ zIndex: 1, marginTop: 0, paddingTop: 0 }}
 		>
 			{/* Carrusel de Imágenes de Fondo */}
@@ -91,11 +91,11 @@ export default function HeroSection({ onCategoryFilter }) {
 						<img
 							src={slide.src}
 							alt={slide.title}
-							className="w-full h-full object-cover object-center"
+							className="mt-24 w-full h-full object-cover object-center"
 						/>
 						{/* Overlay para legibilidad */}
-						<div className="absolute inset-0 bg-gradient-to-r from-[#004391]/70 via-[#002a5c]/60 to-[#004391]/70"></div>
-						<div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/20 to-black/30"></div>
+						<div className="absolute inset-0 bg-gradient-to-r from-[#004391]/50 via-[#002a5c]/30 to-[#004391]/40"></div>
+						<div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/20 to-black/20"></div>
 					</div>
 				))}
 			</div>
@@ -109,7 +109,7 @@ export default function HeroSection({ onCategoryFilter }) {
 			</div>
 
 			{/* Contenido Principal */}
-			<div className="relative z-20 w-full h-full flex items-center">
+			<div className="mt-24 relative z-20 w-full h-full flex items-center">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 					<div className="flex items-center justify-center h-full min-h-screen pt-16 lg:pt-20">
 						<div className="space-y-4 sm:space-y-6 text-center lg:text-left max-w-4xl mx-auto lg:mx-0 w-full">
