@@ -50,13 +50,13 @@ const Nosotros = () => {
       <div 
         className="absolute inset-0 w-full h-full -z-10"
         style={{
-          backgroundImage: "url('/OZZimages/local2.jpg')",
+          backgroundImage: "url('/OZZimages/local1.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-black/30"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
       </div>
 
@@ -85,10 +85,7 @@ const Nosotros = () => {
         {/* Video presentación principal mejorado */}
         <div className="mb-20">
           <div className="relative bg-gradient-to-br from-slate-800/40 to-slate-900/60 rounded-3xl p-8 backdrop-blur-sm border border-slate-700/30 shadow-2xl">
-            <div className="flex items-center mb-6">
-              <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full mr-4"></div>
+            <div className="mb-6">
               <span className="text-slate-400 text-sm">Presentación Oficial OZZcycling</span>
             </div>
             <div className="relative rounded-2xl overflow-hidden">
@@ -99,7 +96,7 @@ const Nosotros = () => {
                 loop
                 autoPlay
                 muted
-                className="w-full max-h-96 object-cover rounded-xl shadow-2xl"
+                className="w-full h-[520px] md:h-[800px] object-cover rounded-xl shadow-2xl"
                 poster="/LOGO/Log.OZZ.png"
               >
                 Tu navegador no soporta el video.

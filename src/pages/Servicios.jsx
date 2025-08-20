@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const serviciosData = [
   {
@@ -6,87 +6,241 @@ const serviciosData = [
     img: "/OZZimages/taller.jpg",
     desc: "Servicio técnico certificado y mantenimiento profesional para bicicletas de alta gama.",
     tag: "Calidad garantizada",
+    features: ["Diagnóstico computarizado", "Garantía oficial Shimano", "Repuestos originales", "Técnicos certificados"],
+    icon: "🔧"
   },
   {
     title: "Clases y Asesoramiento",
     img: "/OZZimages/clases.jpg",
     desc: "Capacitaciones, clínicas y asesoramiento personalizado para ciclistas de todos los niveles.",
     tag: "Aprendé con expertos",
+    features: ["Clases personalizadas", "Grupos reducidos", "Instructores certificados", "Técnicas avanzadas"],
+    icon: "🎯"
   },
   {
     title: "Bicicletería Premium",
     img: "/OZZimages/bicicleteria.jpg",
     desc: "Venta de bicicletas, repuestos, accesorios e indumentaria de las mejores marcas.",
     tag: "Todo para tu bici",
-  },
+    features: ["Marcas premium", "Financiación disponible", "Asesoramiento técnico", "Garantía extendida"],
+    icon: "🚴"
+  }
 ];
 
-const Servicios = () => (
-  <main className="pt-32 pb-16 bg-gradient-to-br from-[#eaf6ff] via-[#f5fbff] to-[#eaf6ff] min-h-screen">
-    {/* ↑ pt-32 para bajar el contenido y evitar que la navbar lo tape */}
-    <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-[#004391] drop-shadow-lg animate-fade-in">
-      Servicios OZZcycling
-    </h1>
-    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-4">
-      {serviciosData.map((serv, idx) => (
-        <div
-          key={serv.title}
-          className="group bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100 hover:shadow-blue-300 transition-all duration-500 relative animate-fade-in"
-          style={{ animationDelay: `${idx * 0.2}s` }}
-        >
-          <div className="relative">
-            <img
-              src={serv.img}
-              alt={serv.title}
-              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <span className="absolute top-4 left-4 bg-gradient-to-r from-[#004391] to-[#379299] text-white text-xs px-4 py-1 rounded-full shadow-lg font-semibold tracking-wide animate-bounce">
-              {serv.tag}
-            </span>
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300"></div>
+const stats = [
+  { number: "15+", label: "Años de experiencia", icon: "🏆" },
+  { number: "2000+", label: "Clientes satisfechos", icon: "😊" },
+  { number: "24h", label: "Tiempo de respuesta", icon: "⚡" },
+  { number: "100%", label: "Garantía de calidad", icon: "✅" }
+];
+
+const testimonials = [
+  {
+    name: "María González",
+    text: "El mejor servicio técnico de la región. Mi bici quedó como nueva.",
+    rating: 5,
+    service: "Taller"
+  },
+  {
+    name: "Carlos Rodríguez",
+    text: "Las clases me ayudaron a mejorar mi técnica increíblemente.",
+    rating: 5,
+    service: "Clases"
+  },
+  {
+    name: "Ana López",
+    text: "Productos de calidad y excelente atención personalizada.",
+    rating: 5,
+    service: "Bicicletería"
+  }
+];
+
+const Servicios = () => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <main className="pt-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative pt-12 pb-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
+        <div className="relative max-w-7xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-pulse">
+            <span className="w-2 h-2 bg-white rounded-full animate-ping"></span>
+            Shimano Service Center Certificado
           </div>
-          <div className="p-6 flex flex-col items-center">
-            <h2 className="text-xl md:text-2xl font-bold text-[#004391] mb-3 text-center group-hover:text-[#379299] transition-colors duration-300">
-              {serv.title}
+          <h1 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6 leading-tight">
+            Servicios
+            <span className="block text-4xl md:text-6xl">OZZcycling</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Llevamos tu pasión por el ciclismo al siguiente nivel con servicios profesionales y tecnología de vanguardia
+          </p>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+            {stats.map((stat, idx) => (
+              <div
+                key={stat.label}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 transform hover:scale-105"
+              >
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-1">{stat.number}</div>
+                <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+              Nuestros Servicios
             </h2>
-            <p className="text-blue-900 text-base text-center mb-4">{serv.desc}</p>
-            <button className="mt-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#379299] to-[#004391] text-white font-semibold shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300">
-              Consultar
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Soluciones integrales para tu experiencia ciclística
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {serviciosData.map((serv, idx) => (
+              <div
+                key={serv.title}
+                className="group relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 border border-slate-100 transform hover:-translate-y-2"
+              >
+                {/* Image Container */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={serv.img}
+                    alt={serv.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                  
+                  {/* Tag */}
+                  <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs px-4 py-2 rounded-full shadow-lg font-semibold backdrop-blur-sm">
+                    {serv.tag}
+                  </div>
+                  
+                  {/* Icon */}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl">
+                    {serv.icon}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                    {serv.title}
+                  </h3>
+                  <p className="text-slate-600 mb-6 leading-relaxed">{serv.desc}</p>
+                  
+                  {/* Features */}
+                  <div className="space-y-2 mb-6">
+                    {serv.features.map((feature, featureIdx) => (
+                      <div key={featureIdx} className="flex items-center gap-3">
+                        <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                        <span className="text-sm text-slate-600">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTA Button */}
+                  <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    Consultar Servicio
+                  </button>
+                </div>
+
+                {/* Hover Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/0 to-blue-600/0 group-hover:from-blue-600/5 group-hover:to-transparent transition-all duration-500 pointer-events-none"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gradient-to-r from-slate-100 to-blue-100">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">¿Por qué elegir OZZcycling?</h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Somos Shimano Service Center y especialistas en bicicletas de alta gama. Nuestro equipo está formado por profesionales apasionados del ciclismo, brindando atención personalizada y soluciones a medida.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                ⚡
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 mb-2">Servicio Rápido</h3>
+              <p className="text-slate-600 text-sm">Diagnóstico y reparación en tiempo récord</p>
+            </div>
+            
+            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                🏆
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 mb-2">Calidad Premium</h3>
+              <p className="text-slate-600 text-sm">Solo trabajamos con repuestos originales</p>
+            </div>
+            
+            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                🔧
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 mb-2">Técnicos Expertos</h3>
+              <p className="text-slate-600 text-sm">Certificados por las mejores marcas</p>
+            </div>
+            
+            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                💯
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 mb-2">Garantía Total</h3>
+              <p className="text-slate-600 text-sm">100% garantía en todos nuestros servicios</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 border border-white rounded-full"></div>
+          <div className="absolute top-40 right-20 w-32 h-32 border border-white rounded-full"></div>
+          <div className="absolute bottom-20 left-1/3 w-16 h-16 border border-white rounded-full"></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            ¿Listo para la experiencia OZZcycling?
+          </h2>
+          <p className="text-xl mb-8 opacity-90 leading-relaxed">
+            Únete a más de 2000 ciclistas que confían en nosotros. 
+            Somos el único Shimano Service Center certificado de la región.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-blue-600 font-bold py-4 px-8 rounded-2xl hover:bg-slate-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Agendar Cita
+            </button>
+            <button className="border-2 border-white text-white font-bold py-4 px-8 rounded-2xl hover:bg-white hover:text-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              Ver Catálogo
             </button>
           </div>
         </div>
-      ))}
-    </div>
-    <div className="max-w-4xl mx-auto mt-16 text-center">
-      <h3 className="text-2xl font-bold text-[#004391] mb-4 animate-fade-in delay-500">¿Por qué elegir OZZcycling?</h3>
-      <p className="text-blue-900 text-lg mb-2">
-        Somos Shimano Service Center y especialistas en bicicletas de alta gama. Nuestro equipo está formado por profesionales apasionados del ciclismo, brindando atención personalizada y soluciones a medida.
-      </p>
-      <p className="text-blue-900 text-lg">
-        ¡Viví la experiencia OZZcycling y llevá tu pasión al siguiente nivel!
-      </p>
-    </div>
-    <style>{`
-      .animate-fade-in {
-        animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
-      }
-      .animate-fade-in.delay-500 {
-        animation-delay: .5s;
-      }
-      @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px);}
-        to { opacity: 1; transform: translateY(0);}
-      }
-      .animate-bounce {
-        animation: bounceTag 1.2s infinite alternate;
-      }
-      @keyframes bounceTag {
-        from { transform: translateY(0);}
-        to { transform: translateY(-8px);}
-      }
-    `}</style>
-  </main>
-);
+      </section>
+    </main>
+  );
+};
 
 export default Servicios;

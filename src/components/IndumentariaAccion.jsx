@@ -6,6 +6,9 @@ const images = [
   { src: "/OZZimages/mag3.jpg", alt: "Indumentaria 3" },
   { src: "/OZZimages/mag4.jpg", alt: "Indumentaria 4" },
   { src: "/OZZimages/mag5.jpg", alt: "Indumentaria 5" },
+  { src: "/OZZimages/mag6.jpg", alt: "Indumentaria 6" },
+  { src: "/OZZimages/mag7.jpg", alt: "Indumentaria 7" },
+
 ];
 
 const IndumentariaAccion = () => {

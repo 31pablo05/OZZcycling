@@ -39,6 +39,7 @@ const Navbar = () => {
      { name: "Nosotros", path: "/nosotros", icon: "👤" },
     { name: "Servicios", path: "/servicios", icon: "🛠️" },
     { name: "Tienda", path: "/tienda", icon: "🛒" },
+    { name: "Galeria", path: "/galeria", icon: "🖼️" },
     { name: "Contacto", path: "/contacto", icon: "📞" },
    
   ];
