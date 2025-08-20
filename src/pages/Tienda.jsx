@@ -313,7 +313,8 @@ const Tienda = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="mt-32 min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative px-6 py-16 mx-auto max-w-7xl">
@@ -329,7 +330,8 @@ const Tienda = () => {
         </div>
       </div>
 
-      <div className="px-6 py-8 mx-auto max-w-7xl">
+      {/* Agrega margen superior para evitar que la navbar lo tape */}
+      <div className="px-6 py-8 mx-auto max-w-7xl mt-24">
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
