@@ -8,6 +8,7 @@ const images = [
   { src: "/OZZimages/mag5.jpg", alt: "Indumentaria 5" },
   { src: "/OZZimages/mag6.jpg", alt: "Indumentaria 6" },
   { src: "/OZZimages/mag7.jpg", alt: "Indumentaria 7" },
+  { src: "/OZZimages/mag8.jpg", alt: "Indumentaria 8" },
 
 ];
 
