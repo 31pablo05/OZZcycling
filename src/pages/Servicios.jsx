@@ -56,7 +56,7 @@ const testimonials = [
 ];
 
 const Servicios = () => {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [ setActiveTestimonial] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,7 +66,7 @@ const Servicios = () => {
   }, []);
 
   return (
-    <main className="pt-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen overflow-hidden">
+    <main className="mt-24 pt-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen overflow-hidden">
       {/* Hero Section */}
       <section className="relative pt-12 pb-20">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
@@ -85,12 +85,25 @@ const Servicios = () => {
           
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-            {stats.map((stat, idx) => (
+            {stats.map((stat) => (
               <div
                 key={stat.label}
                 className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 transform hover:scale-105"
               >
-                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="text-3xl mb-2" aria-label={stat.label} role="img">
+                  {stat.icon === "🏆" && (
+                    <svg className="w-8 h-8 text-yellow-400 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+                  )}
+                  {stat.icon === "😊" && (
+                    <svg className="w-8 h-8 text-blue-400 mx-auto" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="#fff" strokeWidth="2"/><circle cx="9" cy="10" r="1" fill="#fff"/><circle cx="15" cy="10" r="1" fill="#fff"/></svg>
+                  )}
+                  {stat.icon === "⚡" && (
+                    <svg className="w-8 h-8 text-yellow-500 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h9v8l7-12h-9z"/></svg>
+                  )}
+                  {stat.icon === "✅" && (
+                    <svg className="w-8 h-8 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="#fff" strokeWidth="2" fill="none"/></svg>
+                  )}
+                </div>
                 <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-1">{stat.number}</div>
                 <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
               </div>
@@ -112,7 +125,7 @@ const Servicios = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {serviciosData.map((serv, idx) => (
+            {serviciosData.map((serv) => (
               <div
                 key={serv.title}
                 className="group relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 border border-slate-100 transform hover:-translate-y-2"
@@ -133,8 +146,16 @@ const Servicios = () => {
                   </div>
                   
                   {/* Icon */}
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl">
-                    {serv.icon}
+                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl" aria-label={serv.title} role="img">
+                    {serv.icon === "🔧" && (
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2v2m0 16v2m8-10h2M2 12H4m15.07-7.07l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M4.93 4.93L6.34 6.34" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    )}
+                    {serv.icon === "🎯" && (
+                      <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" strokeWidth="2"/><circle cx="12" cy="12" r="6" strokeWidth="2"/><circle cx="12" cy="12" r="2" strokeWidth="2"/></svg>
+                    )}
+                    {serv.icon === "🚴" && (
+                      <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="5.5" cy="18.5" r="3.5"/><circle cx="18.5" cy="18.5" r="3.5"/><path d="M5.5 18.5L12 8l6.5 10.5" strokeWidth="2"/></svg>
+                    )}
                   </div>
                 </div>
 
@@ -180,33 +201,30 @@ const Servicios = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                ⚡
+            <div className="text-center bg-white rounded-2xl p-6 shadow-2xl">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white mx-auto mb-4" aria-label="Servicio Rápido" role="img">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h9v8l7-12h-9z"/></svg>
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">Servicio Rápido</h3>
               <p className="text-slate-600 text-sm">Diagnóstico y reparación en tiempo récord</p>
             </div>
-            
-            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                🏆
+            <div className="text-center bg-white rounded-2xl p-6 shadow-2xl">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white mx-auto mb-4" aria-label="Calidad Premium" role="img">
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">Calidad Premium</h3>
               <p className="text-slate-600 text-sm">Solo trabajamos con repuestos originales</p>
             </div>
-            
-            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                🔧
+            <div className="text-center bg-white rounded-2xl p-6 shadow-2xl">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white mx-auto mb-4" aria-label="Técnicos Expertos" role="img">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 2v2m0 16v2m8-10h2M2 12H4m15.07-7.07l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M4.93 4.93L6.34 6.34" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">Técnicos Expertos</h3>
               <p className="text-slate-600 text-sm">Certificados por las mejores marcas</p>
             </div>
-            
-            <div className="text-center bg-white rounded-2xl p-6 shadow-lg">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                💯
+            <div className="text-center bg-white rounded-2xl p-6 shadow-2xl">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white mx-auto mb-4" aria-label="Garantía Total" role="img">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="#fff" strokeWidth="2" fill="none"/></svg>
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">Garantía Total</h3>
               <p className="text-slate-600 text-sm">100% garantía en todos nuestros servicios</p>
@@ -230,10 +248,10 @@ const Servicios = () => {
             Somos el único Shimano Service Center certificado de la región.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 font-bold py-4 px-8 rounded-2xl hover:bg-slate-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <button className="bg-white text-blue-600 font-bold py-4 px-8 rounded-2xl hover:bg-slate-50 transition-all duration-300 shadow-2xl hover:shadow-2xl transform hover:-translate-y-1" aria-label="Agendar Cita" role="button">
               Agendar Cita
             </button>
-            <button className="border-2 border-white text-white font-bold py-4 px-8 rounded-2xl hover:bg-white hover:text-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <button className="border-2 border-white text-white font-bold py-4 px-8 rounded-2xl hover:bg-white hover:text-blue-600 transition-all duration-300 shadow-2xl hover:shadow-2xl transform hover:-translate-y-1" aria-label="Ver Catálogo" role="button">
               Ver Catálogo
             </button>
           </div>

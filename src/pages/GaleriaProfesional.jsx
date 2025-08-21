@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import RevealOnScroll from "../components/RevealOnScroll";
 
 const galleryData = {
   hero: {
@@ -172,7 +173,7 @@ const GaleriaProfesional = () => {
   }, [isModalOpen, selectedMedia]);
 
   return (
-    <section className="mt-24 relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 overflow-hidden">
+    <section className="mt-32 relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 overflow-hidden">
       {/* Fondo artístico animado */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -247,61 +248,58 @@ const GaleriaProfesional = () => {
         <div className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {galleryData.categories[activeCategory].items.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => openModal(item, activeCategory, index)}
-                className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-2xl overflow-hidden backdrop-blur-sm border border-slate-700/30 hover:border-blue-500/50 cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  {item.type === 'video' ? (
-                    <video
-                      src={item.src}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      muted
-                      loop
-                      onMouseEnter={(e) => e.target.play()}
-                      onMouseLeave={(e) => e.target.pause()}
-                    >
-                      Tu navegador no soporta el video.
-                    </video>
-                  ) : (
-                    <img
-                      src={item.src}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  )}
-                  
-                  {/* Overlay con gradiente */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  
-                  {/* Indicador de tipo de media */}
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
-                      {item.type === 'video' ? '▶ VIDEO' : '📷 FOTO'}
+              <RevealOnScroll key={index} animationDelay={index * 120}>
+                <div
+                  onClick={() => openModal(item, activeCategory, index)}
+                  className="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-2xl overflow-hidden backdrop-blur-sm border border-slate-700/30 hover:border-blue-500/50 cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+                >
+                  <div className="relative h-64 overflow-hidden">
+                    {item.type === 'video' ? (
+                      <video
+                        src={item.src}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        muted
+                        loop
+                        onMouseEnter={(e) => e.target.play()}
+                        onMouseLeave={(e) => e.target.pause()}
+                      >
+                        Tu navegador no soporta el video.
+                      </video>
+                    ) : (
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                    )}
+                    {/* Overlay con gradiente */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
+                    {/* Indicador de tipo de media */}
+                    <div className="absolute top-4 right-4">
+                      <div className="bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        {item.type === 'video' ? '▶ VIDEO' : '📷 FOTO'}
+                      </div>
+                    </div>
+                    {/* Botón de ampliación */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                  
-                  {/* Botón de ampliación */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 border border-white/30">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                      </svg>
-                    </div>
+                  {/* Información del contenido */}
+                  <div className="p-6">
+                    <h3 className="text-white font-bold text-lg mb-2 group-hover:text-blue-300 transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
-                
-                {/* Información del contenido */}
-                <div className="p-6">
-                  <h3 className="text-white font-bold text-lg mb-2 group-hover:text-blue-300 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+              </RevealOnScroll>
             ))}
           </div>
         </div>

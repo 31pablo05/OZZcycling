@@ -40,7 +40,7 @@ function Contacto() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#004391] via-blue-900 to-[#379299] overflow-x-hidden">
+    <div className="mt-32 min-h-screen bg-gradient-to-br from-[#004391] via-blue-900 to-[#379299] overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative py-32 px-4 w-full overflow-hidden">
         {/* ↑ py-32 para bajar el contenido y evitar que la navbar lo tape */}

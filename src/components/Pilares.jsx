@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RevealOnScroll from "./RevealOnScroll";
 
 const pilares = [
 	{
@@ -125,20 +126,20 @@ const Pilares = () => {
 	};
 
 	return (
-		<section className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
-			{/* Elementos decorativos de fondo */}
+		<section className="relative py-20 bg-gradient-to-br from-blue-50 via-cyan-50 to-violet-50 overflow-hidden">
+			{/* Elementos decorativos de fondo con paleta azul/cian/violeta */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-				<div className="absolute top-10 left-10 w-32 h-32 bg-[#379299]/10 rounded-full animate-pulse"></div>
-				<div className="absolute top-40 right-20 w-20 h-20 bg-[#379299]/15 rounded-full animate-bounce delay-700"></div>
-				<div className="absolute bottom-20 left-1/4 w-16 h-16 bg-[#379299]/20 rounded-full animate-pulse delay-1000"></div>
-				<div className="absolute bottom-32 right-1/3 w-24 h-24 bg-[#379299]/8 rounded-full animate-bounce delay-500"></div>
-				<div className="absolute top-20 right-1/4 w-8 h-8 bg-gradient-to-br from-[#379299] to-[#2d7a7a] transform rotate-45 animate-spin opacity-20" style={{animationDuration: '8s'}}></div>
-				<div className="absolute bottom-40 left-1/3 w-6 h-6 bg-gradient-to-br from-[#379299] to-[#2d7a7a] transform rotate-12 animate-ping opacity-30"></div>
+				<div className="absolute top-10 left-10 w-32 h-32 bg-blue-400/10 rounded-full animate-pulse"></div>
+				<div className="absolute top-40 right-20 w-20 h-20 bg-cyan-400/15 rounded-full animate-bounce delay-700"></div>
+				<div className="absolute bottom-20 left-1/4 w-16 h-16 bg-violet-400/20 rounded-full animate-pulse delay-1000"></div>
+				<div className="absolute bottom-32 right-1/3 w-24 h-24 bg-blue-400/8 rounded-full animate-bounce delay-500"></div>
+				<div className="absolute top-20 right-1/4 w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-400 transform rotate-45 animate-spin opacity-20" style={{animationDuration: '8s'}}></div>
+				<div className="absolute bottom-40 left-1/3 w-6 h-6 bg-gradient-to-br from-cyan-400 to-violet-400 transform rotate-12 animate-ping opacity-30"></div>
 				{/* Partículas flotantes adicionales */}
 				{[...Array(6)].map((_, i) => (
 					<div
 						key={i}
-						className="absolute w-1 h-1 bg-[#379299]/40 rounded-full animate-pulse"
+						className="absolute w-1 h-1 bg-blue-400/40 rounded-full animate-pulse"
 						style={{
 							left: `${Math.random() * 100}%`,
 							top: `${Math.random() * 100}%`,
@@ -151,38 +152,48 @@ const Pilares = () => {
 
 			<div className="relative z-10 container mx-auto px-6 text-center">
 				<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 relative animate-fade-in">
-					Nuestros <span className="text-[#379299] relative z-10">Pilares</span>
-					<div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2/3 h-3 bg-gradient-to-r from-[#379299]/30 to-[#379299]/10 scale-x-0 animate-pulse" style={{animationDelay: '1s', animationDuration: '2s', animationFillMode: 'forwards'}}></div>
+					Nuestros <span className="text-blue-500 relative z-10">Pilares</span>
+					<div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2/3 h-3 bg-gradient-to-r from-blue-400/30 to-cyan-400/10 scale-x-0 animate-pulse" style={{animationDelay: '1s', animationDuration: '2s', animationFillMode: 'forwards'}}></div>
 				</h2>
 				<p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8 font-light animate-fade-in delay-200">
-					Bicicletería de alta gama en Buenos Aires. Servicio técnico certificado, asesoramiento profesional y los mejores accesorios para tu bici.
+					Bicicletería profesional y de élite en Buenos Aires. Servicio técnico certificado, asesoramiento experto y los mejores accesorios para tu bici.
 				</p>
-				{/* Tarjetas de pilares */}
-				<div className="flex flex-wrap justify-center gap-6 mb-8 animate-fade-in delay-400">
-					{pilares.map((pilar, idx) => (
-						<div
-							key={pilar.title}
-							className="group bg-white px-8 py-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border border-blue-100 hover:border-[#379299]/30 max-w-xs flex-1 flex flex-col items-center"
-						>
-							<div className="mb-4">{pilar.icon}</div>
-							<h3 className="font-bold text-xl mb-2 text-blue-900 group-hover:text-[#379299] transition-colors duration-200">
-								{pilar.title}
-							</h3>
-							<p className="text-gray-700 mb-4">{pilar.desc}</p>
-							<button
-								className="text-[#379299] font-semibold underline underline-offset-4 hover:text-blue-900 transition-colors duration-200 mb-2"
-								onClick={() => handleToggle(idx)}
-							>
-								{open[idx] ? "Ver menos" : "Ver más"}
-							</button>
-							{open[idx] && (
-								<div className="bg-blue-50 rounded-lg p-4 text-blue-900 text-sm shadow-inner animate-fade-in">
-									{pilar.more}
-								</div>
-							)}
+						{/* Tarjetas de pilares con RevealOnScroll */}
+						<div className="flex flex-wrap justify-center gap-6 mb-8 animate-fade-in delay-400">
+							{pilares.map((pilar, idx) => (
+								<RevealOnScroll key={pilar.title} animationDelay={idx * 120}>
+									<div
+										className="group bg-white px-8 py-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border border-blue-100 hover:border-blue-400/30 max-w-xs flex-1 flex flex-col items-center"
+										role="region"
+										aria-labelledby={`pilar-title-${idx}`}
+									>
+										<div className="mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-lg">{pilar.icon}</div>
+										<h3 id={`pilar-title-${idx}`} className="font-bold text-xl mb-2 text-blue-900 group-hover:text-blue-500 transition-colors duration-200">
+											{pilar.title}
+										</h3>
+										<p className="text-gray-700 mb-4">{pilar.desc}</p>
+										<button
+											className="inline-flex items-center gap-2 text-blue-500 font-semibold underline underline-offset-4 hover:text-cyan-600 transition-colors duration-200 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded"
+											onClick={() => handleToggle(idx)}
+											aria-expanded={open[idx]}
+											aria-controls={`pilar-more-${idx}`}
+										>
+											{open[idx] ? "Ver menos" : "Ver más"}
+											<span className={`transition-transform duration-300 ${open[idx] ? 'rotate-180' : ''}`}>
+												<svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+											</span>
+										</button>
+										<div
+											id={`pilar-more-${idx}`}
+											className={`bg-blue-50 rounded-lg text-blue-900 text-sm shadow-inner transition-all duration-500 overflow-hidden ${open[idx] ? 'max-h-[500px] opacity-100 p-4' : 'max-h-0 opacity-0 p-0'}`}
+											aria-hidden={!open[idx]}
+										>
+											{open[idx] && pilar.more}
+										</div>
+									</div>
+								</RevealOnScroll>
+							))}
 						</div>
-					))}
-				</div>
 				{/* Cifras y testimonios */}
 				<div className="max-w-4xl mx-auto mt-16 grid md:grid-cols-3 gap-8 text-center animate-fade-in delay-600">
 					<div>
@@ -202,7 +213,7 @@ const Pilares = () => {
 				<div className="text-center mt-12 animate-fade-in delay-800">
 					<a
 						href="/tienda"
-						className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#379299] to-[#2d7a7a] text-white font-bold py-4 px-8 rounded-full hover:from-[#2d7a7a] hover:to-[#1f5a5a] transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl overflow-hidden"
+						className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold py-4 px-8 rounded-full hover:from-cyan-600 hover:to-violet-600 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl overflow-hidden"
 					>
 						<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
 						<span className="relative z-10">Conocé nuestra tienda</span>

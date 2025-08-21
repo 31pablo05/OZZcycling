@@ -46,14 +46,26 @@ const SocialIcon = ({
 
 function Footer() {
   return (
-    <footer className="bg-[#004391] text-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+    <footer className="bg-gradient-to-br from-blue-900 via-cyan-900 to-violet-900 text-white relative overflow-hidden">
+      {/* Fondo decorativo moderno con gradiente y partículas */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-20 h-20 bg-cyan-400/15 rounded-full blur-2xl animate-bounce delay-700"></div>
+        <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-violet-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-32 right-1/3 w-24 h-24 bg-blue-400/8 rounded-full blur-2xl animate-bounce delay-500"></div>
+        {/* Partículas flotantes */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-white/20 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-10">
@@ -61,7 +73,10 @@ function Footer() {
           {/* Columna 1: Información Principal */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-2 text-white">OZZcycling</h3>
+              <h3 className="text-2xl font-bold mb-2 text-white flex items-center gap-3">
+                <img src="/LOGO/Log.OZZ.png" alt="Logo OZZcycling" className="w-8 h-8 rounded-full shadow-md" />
+                OZZcycling
+              </h3>
               <p className="text-blue-200 font-medium text-lg mb-2">
                 Bicicletería de Alta Gama
               </p>
@@ -88,8 +103,9 @@ function Footer() {
               </p>
               <a
                 href="/contacto"
-                className="inline-block bg-[#379299] hover:bg-[#2d7a7f] text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 via-cyan-500 to-violet-600 hover:from-cyan-600 hover:to-violet-600 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l-5-5m0 0L7 8m5-5v12" /></svg>
                 Contactar Ahora
               </a>
             </div>
@@ -155,9 +171,11 @@ function Footer() {
           {/* Columna 3: Redes Sociales */}
           <div>
             <h4 className="text-lg font-bold mb-4 text-white">Redes Sociales</h4>
-            <div className="flex space-x-3 mb-6">
+            <div className="flex space-x-4 mb-6">
               {socialLinks.map((social, index) => (
-                <SocialIcon key={index} {...social} />
+                <div className="animate-fade-in" style={{animationDelay: `${index * 0.2}s`}} key={index}>
+                  <SocialIcon {...social} />
+                </div>
               ))}
             </div>
             <h5 className="text-white font-medium mb-2">Ubicación</h5>
@@ -210,27 +228,22 @@ function Footer() {
         </div>
 
         {/* Línea separadora */}
-        <div className="border-t border-white/20 pt-8">
+  <div className="border-t border-gradient-to-r from-blue-500 via-cyan-500 to-violet-500 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-center md:text-left mb-4 md:mb-0">
-              <p className="text-blue-100 text-sm">
-                &copy; {new Date().getFullYear()} OZZcycling. Todos los derechos
-                reservados.
+              <p className="text-blue-100 text-sm bg-white/5 rounded-lg px-4 py-2 inline-block shadow-md">
+                &copy; {new Date().getFullYear()} OZZcycling. Todos los derechos reservados.
               </p>
             </div>
-            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 bg-white/5 rounded-lg px-4 py-2 shadow-md">
               <div className="text-blue-100 text-xs">
-                Desarrollado con{" "}
-                <span aria-label="amor" role="img">
-                  ❤️
-                </span>{" "}
-                por{" "}
-                <span className="font-semibold text-white">Pablo Proboste</span>
+                Desarrollado con <span aria-label="amor" role="img">❤️</span> por <span className="font-semibold text-white bg-gradient-to-r from-blue-500 via-cyan-500 to-violet-600 bg-clip-text text-transparent">Pablo Proboste</span>
               </div>
               <span className="hidden md:inline text-blue-100">|</span>
               <a
                 href="/politicas-de-privacidad"
                 className="text-blue-100 hover:text-blue-300 transition-colors text-sm"
+                aria-label="Políticas de Privacidad"
               >
                 Políticas de Privacidad
               </a>
@@ -238,6 +251,7 @@ function Footer() {
               <a
                 href="/terminos-y-condiciones"
                 className="text-blue-100 hover:text-blue-300 transition-colors text-sm"
+                aria-label="Términos y Condiciones"
               >
                 Términos y Condiciones
               </a>
@@ -248,5 +262,16 @@ function Footer() {
     </footer>
   );
 }
+/* Animaciones para social icons y fade-in */
+/* Puedes mover esto a tu CSS global si prefieres */
+<style jsx>{`
+  .animate-fade-in {
+    animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+`}</style>
 
 export default Footer;
