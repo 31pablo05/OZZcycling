@@ -30,19 +30,24 @@ const Navbar = () => {
   };
 
   const navClasses = scrolled 
-    ? "bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-2xl transition-all duration-500 fixed top-0 left-0 right-0 z-50"
-    : "bg-gradient-to-r from-black/40 to-transparent backdrop-blur-sm transition-all duration-500 fixed top-0 left-0 right-0 z-50";
+    ? "bg-white/95 backdrop-blur-2xl border-b border-blue-200/30 shadow-2xl shadow-blue-500/10 transition-all duration-700 fixed top-0 left-0 right-0 z-50"
+    : "bg-gradient-to-r from-blue-900/30 via-purple-900/20 to-transparent backdrop-blur-xl transition-all duration-700 fixed top-0 left-0 right-0 z-50";
 
-  // Agregamos el botón "Nosotros"
   const navLinks = [
     { name: "Inicio", path: "/", icon: "🏠" },
-     { name: "Nosotros", path: "/nosotros", icon: "👤" },
-    { name: "Servicios", path: "/servicios", icon: "🛠️" },
+    { name: "Nosotros", path: "/nosotros", icon: "👥" },
+    { name: "Servicios", path: "/servicios", icon: "⚙️" },
     { name: "Tienda", path: "/tienda", icon: "🛒" },
-    { name: "Galeria", path: "/galeria", icon: "🖼️" },
-    { name: "Contacto", path: "/contacto", icon: "📞" },
-   
+    { name: "Galeria", path: "/galeria", icon: "📸" },
+    { name: "Contacto", path: "/contacto", icon: "💬" },
   ];
+
+  // Unifica los estilos de color para todos los links
+  const getColorClasses = (isActive) => {
+    return isActive
+      ? 'bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 text-white shadow-blue-500/30'
+      : 'text-blue-900 hover:bg-gradient-to-r hover:from-blue-600 hover:via-cyan-500 hover:to-violet-600 hover:text-white hover:shadow-blue-500/20';
+  };
 
   const isActiveLink = (path) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -51,85 +56,102 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${navClasses} py-3 px-4 overflow-x-hidden`}>
+    <nav className={`${navClasses} py-4 px-6 overflow-x-hidden`}>
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo actualizado */}
+        {/* Logo mejorado */}
         <Link 
           to="/" 
-          className="group transition-transform duration-300 hover:scale-105"
+          className="group transition-all duration-500 hover:scale-110"
           onClick={handleNavigation}
         >
           <div className="relative">
-            <img
-              src="/LOGO/Log.OZZ.png"
-              alt="OZZcycling Logo"
-              className="h-12 w-auto drop-shadow-2xl transition-all duration-300 group-hover:drop-shadow-3xl"
-              width="89"
-              height="48"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-              style={{ 
-                maxWidth: '89px', 
-                height: 'auto',
-                objectFit: 'contain'
-              }}
-            />
-            {/* Glow effect */}
-            <div className="absolute inset-0 bg-blue-800/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-150"></div>
+            <div className="relative bg-gradient-to-br from-white/20 to-white/5 rounded-2xl p-3 border border-white/30 backdrop-blur-sm shadow-xl">
+              <img
+                src="/LOGO/Log.OZZ.png"
+                alt="OZZcycling Logo"
+                className="h-12 w-auto drop-shadow-2xl transition-all duration-500 group-hover:brightness-110 group-hover:drop-shadow-3xl"
+                width="89"
+                height="48"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                style={{ 
+                  maxWidth: '89px', 
+                  height: 'auto',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
           </div>
         </Link>
 
-        {/* Botón hamburguesa para móviles */}
+        {/* Botón hamburguesa mejorado */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="relative w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-blue-900 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-blue-800 transition-all duration-300"
+            className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl border border-white/30 text-blue-900 hover:from-blue-500/20 hover:to-purple-500/20 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-500 shadow-lg hover:shadow-xl"
             aria-label="Toggle menu"
           >
             <div className="flex flex-col items-center justify-center w-full h-full">
-              <span className={`block w-5 h-0.5 bg-blue-900 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : 'mb-1'}`}></span>
-              <span className={`block w-5 h-0.5 bg-blue-900 transition-all duration-300 ${isOpen ? 'opacity-0' : 'mb-1'}`}></span>
-              <span className={`block w-5 h-0.5 bg-blue-900 transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              <span className={`block w-6 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1.5' : 'mb-1.5'} rounded-full shadow-sm`}></span>
+              <span className={`block w-6 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${isOpen ? 'opacity-0' : 'mb-1.5'} rounded-full shadow-sm`}></span>
+              <span className={`block w-6 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''} rounded-full shadow-sm`}></span>
             </div>
           </button>
         </div>
 
-        {/* Menú principal */}
-        <ul className="hidden md:flex items-center space-x-1">
+        {/* Menú principal mejorado */}
+        <ul className="hidden md:flex items-center space-x-2">
           {navLinks.map((item, index) => (
             <li key={index}>
               <Link
                 to={item.path}
                 onClick={handleNavigation}
                 className={`
-                  relative group flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-300
+                  relative group flex items-center space-x-3 px-6 py-3 rounded-2xl font-semibold transition-all duration-500 overflow-hidden shadow-lg hover:shadow-xl
                   ${isActiveLink(item.path) 
-                    ? 'bg-blue-800 text-white shadow-lg transform scale-105' 
-                    : 'text-blue-900 hover:text-white hover:bg-blue-800/80'
+                    ? `${getColorClasses(true)} transform scale-105` 
+                    : `${scrolled ? 'text-blue-900' : 'text-white'} ${getColorClasses(false)} hover:scale-105`
                   }
                 `}
               >
-                <span className="text-sm opacity-70 group-hover:opacity-100">{item.icon}</span>
-                <span className="tracking-wide">{item.name}</span>
+                {/* Fondo con brillo sutil */}
+                <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                
+                {/* Icono mejorado */}
+                <span className="relative text-lg opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter drop-shadow-sm">
+                  {item.icon}
+                </span>
+                
+                {/* Texto */}
+                <span className="relative tracking-wide font-medium">
+                  {item.name}
+                </span>
+                
+                {/* Indicador activo */}
                 {isActiveLink(item.path) && (
-                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-lg"></div>
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white rounded-full shadow-lg animate-pulse"></div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-800/0 via-blue-800/10 to-blue-800/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                
+                {/* Efecto de brillo que se mueve */}
+                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </div>
               </Link>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Menú desplegable para móviles */}
-      <div className={`md:hidden transition-all duration-500 ease-in-out overflow-hidden ${
-        isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+      {/* Menú desplegable para móviles mejorado */}
+      <div className={`md:hidden transition-all duration-700 ease-out overflow-hidden ${
+        isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
-        <div className="bg-white/5 backdrop-blur-xl border-t border-white/10 mt-4 rounded-xl mx-4">
-          <ul className="py-4 space-y-2">
+        <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl border border-white/20 mt-6 rounded-3xl mx-4 shadow-2xl shadow-blue-500/10">
+          <ul className="py-6 space-y-3">
             {navLinks.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="px-4">
                 <Link
                   to={item.path}
                   onClick={() => {
@@ -137,24 +159,32 @@ const Navbar = () => {
                     handleNavigation();
                   }}
                   className={`
-                    group flex items-center space-x-3 px-6 py-3 mx-2 rounded-lg font-medium transition-all duration-300
+                    group relative flex items-center space-x-4 px-6 py-4 rounded-2xl font-semibold transition-all duration-500 overflow-hidden shadow-lg hover:shadow-xl
                     ${isActiveLink(item.path) 
-                      ? 'bg-blue-800 text-white shadow-lg' 
-                      : 'text-blue-900 hover:text-white hover:bg-blue-800/80'
+                      ? `${getColorClasses(true)}` 
+                      : `text-blue-900 ${getColorClasses(false)}`
                     }
                   `}
                   style={{
                     animationDelay: `${index * 100}ms`
                   }}
                 >
-                  <span className="text-lg opacity-70 group-hover:opacity-100 transition-opacity duration-200">
+                  {/* Fondo con brillo */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  
+                  {/* Icono */}
+                  <span className="relative text-xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter drop-shadow-sm">
                     {item.icon}
                   </span>
-                  <span className="tracking-wide">{item.name}</span>
-                  <div className="ml-auto">
+                  
+                  {/* Texto */}
+                  <span className="relative tracking-wide flex-1">{item.name}</span>
+                  
+                  {/* Flecha */}
+                  <div className="relative ml-auto">
                     <svg 
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        isActiveLink(item.path) ? 'rotate-90' : 'group-hover:translate-x-1'
+                      className={`w-5 h-5 transition-all duration-300 ${
+                        isActiveLink(item.path) ? 'rotate-90 text-white' : 'group-hover:translate-x-2 group-hover:scale-110'
                       }`} 
                       fill="none" 
                       stroke="currentColor" 
@@ -163,6 +193,11 @@ const Navbar = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
+                  
+                  {/* Efecto de brillo */}
+                  <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  </div>
                 </Link>
               </li>
             ))}
@@ -170,12 +205,26 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Loading indicator */}
+      {/* Indicador de carga mejorado */}
       {isLoading && (
-        <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 to-blue-400 z-50">
-          <div className="h-full bg-white/30 animate-pulse"></div>
+        <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 z-50 shadow-lg">
+          <div className="h-full bg-gradient-to-r from-white/60 via-white/90 to-white/60 animate-pulse"></div>
+          <div className="absolute top-0 left-0 h-full w-1/3 bg-white/80 animate-pulse rounded-full blur-sm" 
+               style={{
+                 animation: 'shimmer 1.5s ease-in-out infinite',
+                 background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)'
+               }}>
+          </div>
         </div>
       )}
+
+      {/* Estilos CSS internos */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
+        }
+      `}</style>
     </nav>
   );
 };
