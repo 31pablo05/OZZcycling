@@ -56,7 +56,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${navClasses} py-4 px-6 overflow-x-hidden`}>
+  <nav className={`${navClasses} py-4 px-6`}>
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo mejorado */}
         <Link 
