@@ -220,75 +220,85 @@ const Pilares = () => {
         ></div>
       </div>
 
+      {/* Fondo imagen solo detrás del título y las tres cards */}
       <div className="relative z-10 container mx-auto px-6 text-center">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 relative animate-fade-in">
-          Lo que nos <span className="text-blue-500">Mueve</span>
-        </h2>
-        <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8 font-light animate-fade-in delay-200">
-          Tu bicicletería de confianza en Av. del Libertador 2984. Más de 15 años acompañando ciclistas con servicio técnico certificado, asesoramiento experto y las mejores marcas.
-        </p>
-
-        {/* Tarjetas */}
-        <div className="flex flex-wrap justify-center gap-6 mb-8 animate-fade-in delay-400">
-          {pilares.map((pilar, idx) => (
-            <RevealOnScroll key={pilar.title} animationDelay={idx * 120}>
-              <div
-                className="group bg-white px-6 py-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border border-blue-100 hover:border-blue-400/30 w-full max-w-sm flex-1 flex flex-col items-center min-h-[380px]"
-                role="region"
-                aria-labelledby={`pilar-title-${idx}`}
-              >
-                <div className="mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-lg">
-                  {pilar.icon}
-                </div>
-                <h3
-                  id={`pilar-title-${idx}`}
-                  className="font-bold text-xl mb-3 text-blue-900 group-hover:text-blue-500 transition-colors duration-200 text-center leading-tight"
-                >
-                  {pilar.title}
-                </h3>
-                <p className="text-gray-700 mb-4 flex-grow text-center leading-relaxed">{pilar.desc}</p>
-                <button
-                  className="inline-flex items-center gap-2 text-blue-500 font-semibold underline underline-offset-4 hover:text-cyan-600 transition-colors duration-200 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2 py-1"
-                  onClick={() => handleToggle(idx)}
-                  aria-expanded={open[idx]}
-                  aria-controls={`pilar-more-${idx}`}
-                >
-                  {open[idx] ? "Mostrar menos" : "Conocé más"}
-                  <span
-                    className={`transition-transform duration-300 ${
-                      open[idx] ? "rotate-180" : ""
-                    }`}
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M6 9l6 6 6-6"
-                        stroke="#3b82f6"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
+        <div className="relative">
+          <div className="absolute inset-0 w-full h-full -z-10 flex justify-center items-center">
+            <img
+              src="/OZZimages/competencias/fila.jpg"
+              alt="Competencia ciclismo"
+              className="w-full h-full object-cover opacity-65 mix-blend-multiply rounded-3xl"
+              style={{ pointerEvents: 'none' }}
+            />
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 relative animate-fade-in">
+            Lo que nos <span className="text-blue-500">Mueve</span>
+          </h2>
+          <p className="text-xl md:text-2xl text-[#0a174e] max-w-4xl mx-auto leading-relaxed mb-8 font-light animate-fade-in delay-200">
+            Tu bicicletería de confianza en Av. del Libertador 2984. Más de 15 años acompañando ciclistas con servicio técnico certificado, asesoramiento experto y las mejores marcas.
+          </p>
+          {/* Tarjetas */}
+          <div className="flex flex-wrap justify-center gap-6 mb-8 animate-fade-in delay-400">
+            {pilares.map((pilar, idx) => (
+              <RevealOnScroll key={pilar.title} animationDelay={idx * 120}>
                 <div
-                  id={`pilar-more-${idx}`}
-                  className={`bg-blue-50 rounded-lg text-blue-900 text-sm shadow-inner transition-all duration-500 overflow-hidden w-full ${
-                    open[idx]
-                      ? "max-h-[600px] opacity-100 p-4"
-                      : "max-h-0 opacity-0 p-0"
-                  }`}
-                  aria-hidden={!open[idx]}
+                  className="group bg-white px-4 py-6 md:px-6 md:py-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border border-blue-100 hover:border-blue-400/30 w-full max-w-xs md:max-w-sm flex-1 flex flex-col items-center min-h-[280px] md:min-h-[380px]"
+                  role="region"
+                  aria-labelledby={`pilar-title-${idx}`}
                 >
-                  {open[idx] && pilar.more}
+                  <div className="mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-lg">
+                    {pilar.icon}
+                  </div>
+                  <h3
+                    id={`pilar-title-${idx}`}
+                    className="font-bold text-xl mb-3 text-blue-900 group-hover:text-blue-500 transition-colors duration-200 text-center leading-tight"
+                  >
+                    {pilar.title}
+                  </h3>
+                  <p className="text-gray-700 mb-4 flex-grow text-center leading-relaxed">{pilar.desc}</p>
+                  <button
+                    className="inline-flex items-center gap-2 text-blue-500 font-semibold underline underline-offset-4 hover:text-cyan-600 transition-colors duration-200 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2 py-1"
+                    onClick={() => handleToggle(idx)}
+                    aria-expanded={open[idx]}
+                    aria-controls={`pilar-more-${idx}`}
+                  >
+                    {open[idx] ? "Mostrar menos" : "Conocé más"}
+                    <span
+                      className={`transition-transform duration-300 ${
+                        open[idx] ? "rotate-180" : ""
+                      }`}
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M6 9l6 6 6-6"
+                          stroke="#3b82f6"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    id={`pilar-more-${idx}`}
+                    className={`bg-blue-50 rounded-lg text-blue-900 text-sm shadow-inner transition-all duration-500 overflow-hidden w-full ${
+                      open[idx]
+                        ? "max-h-[600px] opacity-100 p-4"
+                        : "max-h-0 opacity-0 p-0"
+                    }`}
+                    aria-hidden={!open[idx]}
+                  >
+                    {open[idx] && pilar.more}
+                  </div>
                 </div>
-              </div>
-            </RevealOnScroll>
-          ))}
+              </RevealOnScroll>
+            ))}
+          </div>
         </div>
 
         {/* Cifras mejoradas */}
@@ -331,6 +341,7 @@ const Pilares = () => {
           </a>
         </div>
       </div>
+
     </section>
   );
 };

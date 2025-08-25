@@ -93,7 +93,7 @@ const Experiencia = () => {
       {/* Imagen de fondo principal */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/OZZimages/local2.jpg"
+          src="/OZZimages/localav.lib/local2.jpg"
           alt="Local OZZcycling"
           className="w-full h-full object-cover object-center opacity-100"
           style={{ position: 'absolute', inset: 0, minHeight: '100vh', minWidth: '100vw' }}

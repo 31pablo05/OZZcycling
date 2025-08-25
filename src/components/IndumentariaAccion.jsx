@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 
 const images = [
-  { src: "/OZZimages/mag1.jpg", alt: "Indumentaria 1" },
-  { src: "/OZZimages/mag2.jpg", alt: "Indumentaria 2" },
-  { src: "/OZZimages/mag3.jpg", alt: "Indumentaria 3" },
-  { src: "/OZZimages/mag4.jpg", alt: "Indumentaria 4" },
-  { src: "/OZZimages/mag5.jpg", alt: "Indumentaria 5" },
-  { src: "/OZZimages/mag6.jpg", alt: "Indumentaria 6" },
-  { src: "/OZZimages/mag7.jpg", alt: "Indumentaria 7" },
-  { src: "/OZZimages/mag8.jpg", alt: "Indumentaria 8" },
+  { src: "/OZZimages/indumentaria/mag1.jpg", alt: "Indumentaria 1" },
+  { src: "/OZZimages/indumentaria/mag2.jpg", alt: "Indumentaria 2" },
+  { src: "/OZZimages/indumentaria/mag3.jpg", alt: "Indumentaria 3" },
+  { src: "/OZZimages/indumentaria/mag4.jpg", alt: "Indumentaria 4" },
+  { src: "/OZZimages/indumentaria/mag5.jpg", alt: "Indumentaria 5" },
+  { src: "/OZZimages/indumentaria/mag6.jpg", alt: "Indumentaria 6" },
+  { src: "/OZZimages/indumentaria/mag7.jpg", alt: "Indumentaria 7" },
+  { src: "/OZZimages/indumentaria/mag8.jpg", alt: "Indumentaria 8" },
 ];
 
 const IndumentariaAccion = () => {
