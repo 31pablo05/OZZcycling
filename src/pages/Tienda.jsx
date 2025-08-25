@@ -1,6 +1,63 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+// Carrusel de videos verticales para el local
+function VideoCarousel() {
+  const videos = [
+    "/OZZvideos/ozzlocal.mp4",
+    "/OZZvideos/local.mp4",
+    "/OZZvideos/cascos1.mp4"
+  ];
+  const [current, setCurrent] = useState(0);
+  const videoRef = useRef(null);
+
+  const next = () => setCurrent((prev) => (prev + 1) % videos.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + videos.length) % videos.length);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play();
+    }
+  }, [current]);
+
+  return (
+    <div className="relative w-[360px] h-[640px] md:w-[400px] md:h-[720px] flex items-center justify-center">
+      <video
+        ref={videoRef}
+        src={videos[current]}
+        width={720}
+        height={1280}
+        controls
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="rounded-2xl shadow-2xl border-4 border-white/20 object-cover w-full h-full bg-black"
+        style={{ aspectRatio: '9/16', background: '#000' }}
+      />
+      <button
+        onClick={prev}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full p-2 shadow-lg hover:bg-blue-700 transition"
+        aria-label="Anterior"
+      >
+        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 text-white rounded-full p-2 shadow-lg hover:bg-blue-700 transition"
+        aria-label="Siguiente"
+      >
+        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {videos.map((_, idx) => (
+          <span key={idx} className={`w-3 h-3 rounded-full ${idx === current ? 'bg-blue-500' : 'bg-white/30'} border border-white/40 transition`}></span>
+        ))}
+      </div>
+    </div>
+  );
+}
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import products from "../components/productsData"
@@ -21,7 +78,6 @@ import { Separator } from "@/components/ui/separator"
 import { ShoppingCart, Star, Heart, Search, Phone, MessageCircle, Plus, Minus, X } from "lucide-react"
 import FooterInfo from "../components/footerInfo"
 
-
 const categories = [
   { id: "todas", name: "Todas las categorías", icon: "🏪" },
   { id: "bicicletas", name: "Bicicletas", icon: "🚴" },
@@ -29,7 +85,6 @@ const categories = [
   { id: "accesorios", name: "Accesorios", icon: "🔧" },
   { id: "lavado", name: "Lavado y Mantenimiento", icon: "🧽" },
 ]
-
 const Tienda = () => {
   const [selectedCategory, setSelectedCategory] = useState("todas")
   const [cart, setCart] = useState([])
@@ -191,20 +246,9 @@ const Tienda = () => {
 
   return (
     <div className="mt-32 min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative px-6 py-16 mx-auto max-w-7xl">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              🚴 OZZ Bicicletería Premium
-            </h1>
-            <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-              Descubre nuestra selección de bicicletas y accesorios de alta gama. Calidad premium para ciclistas
-              exigentes.
-            </p>
-          </div>
-        </div>
+      {/* Carrusel de Videos del Local */}
+      <div className="relative w-full flex items-center justify-center bg-black py-8">
+        <VideoCarousel />
       </div>
 {/* Agrega margen superior para evitar que la navbar lo tape */}
       <div className="px-6 py-8 mx-auto max-w-7xl mt-24">

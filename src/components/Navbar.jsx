@@ -60,7 +60,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo mejorado */}
         <Link 
-          to="/" 
+          to="/LOGO/Log.OZZ.webp" 
           className="group transition-all duration-500 hover:scale-110"
           onClick={handleNavigation}
         >
@@ -68,7 +68,7 @@ const Navbar = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-150"></div>
             <div className="relative bg-gradient-to-br from-white/20 to-white/5 rounded-2xl p-3 border border-white/30 backdrop-blur-sm shadow-xl">
               <img
-                src="/LOGO/Log.OZZ.png"
+                src="/LOGO/Log.OZZ.webp"
                 alt="OZZcycling Logo"
                 className="h-12 w-auto drop-shadow-2xl transition-all duration-500 group-hover:brightness-110 group-hover:drop-shadow-3xl"
                 width="89"
@@ -219,7 +219,7 @@ const Navbar = () => {
       )}
 
       {/* Estilos CSS internos */}
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(400%); }

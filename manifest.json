@@ -1,0 +1,22 @@
+{
+  "name": "OZZcycling",
+  "short_name": "OZZcycling",
+  "description": "Bicicletería especializada en corredores profesionales y de élite. Shimano Service Center certificado.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#004391",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/LOGO/Log.OZZ.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/LOGO/Log.OZZ.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
