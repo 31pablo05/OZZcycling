@@ -21,13 +21,13 @@ const mediaContent = [
   },
   {
     type: "image",
-    src: "/OZZimages/local2.jpg",
+    src: "/OZZimages/localav.lib/local2.jpg",
     title: "Comunidad de Élite",
     description: "Ciclistas profesionales confían en nosotros"
   },
   {
     type: "image",
-    src: "/OZZimages/local1.jpg", 
+    src: "/OZZimages/localav.lib/local1.jpg", 
     title: "Showroom Exclusivo",
     description: "Las mejores marcas del mundo en un solo lugar"
   }
@@ -50,7 +50,7 @@ const Nosotros = () => {
       <div 
         className="absolute inset-0 w-full h-full -z-10"
         style={{
-          backgroundImage: "url('/OZZimages/local1.jpg')",
+          backgroundImage: "url('/OZZimages/localav.lib/local1.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -97,7 +97,7 @@ const Nosotros = () => {
                 autoPlay
                 muted
                 className="w-full h-[520px] md:h-[800px] object-cover rounded-xl shadow-2xl"
-                poster="/LOGO/Log.OZZ.png"
+                poster="/LOGO/Log.OZZ.webp"
               >
                 Tu navegador no soporta el video.
               </video>
@@ -133,7 +133,7 @@ const Nosotros = () => {
                       loop
                       muted
                       className="w-full h-80 md:h-96 object-cover"
-                      poster="/LOGO/Log.OZZ.png"
+                      poster="/LOGO/Log.OZZ.webp"
                     >
                       Tu navegador no soporta el video.
                     </video>
