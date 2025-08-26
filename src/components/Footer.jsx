@@ -134,7 +134,7 @@ function Footer() {
           {/* Columna 2: Logo y Título (solo desktop) */}
           <div className="hidden lg:flex flex-col items-center justify-center gap-6 order-2">
             <div className="flex items-center gap-4 mb-2">
-              <img src="/LOGO/Log.OZZ.png" alt="Logo OZZcycling" className="w-16 h-16 rounded-full shadow-md border-2 border-white/20" />
+              <img src="/LOGO/logo2.webp" alt="Logo OZZcycling" className="w-16 h-16 rounded-full shadow-md border-2 border-white/20" />
               <h3 className="text-5xl font-black bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent tracking-tight mb-2">OZZcycling</h3>
             </div>
             <div className="space-y-2 text-blue-100">
