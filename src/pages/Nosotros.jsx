@@ -97,7 +97,7 @@ const Nosotros = () => {
                 autoPlay
                 muted
                 className="w-full h-[520px] md:h-[800px] object-cover rounded-xl shadow-2xl"
-                poster="/LOGO/Log.OZZ.webp"
+                poster="/LOGO/logo2.webp"
               >
                 Tu navegador no soporta el video.
               </video>
@@ -133,7 +133,7 @@ const Nosotros = () => {
                       loop
                       muted
                       className="w-full h-80 md:h-96 object-cover"
-                      poster="/LOGO/Log.OZZ.webp"
+                      poster="/LOGO/logo2.webp"
                     >
                       Tu navegador no soporta el video.
                     </video>
