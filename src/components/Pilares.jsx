@@ -1,206 +1,77 @@
 import React, { useState } from "react";
 import RevealOnScroll from "./RevealOnScroll";
+import { FaBicycle, FaTools, FaCogs } from "react-icons/fa";
 
 const pilares = [
   {
     icon: (
-      <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
-        <circle
-          cx="24"
-          cy="24"
-          r="22"
-          stroke="#2563eb"
-          strokeWidth="4"
-          fill="#e0f2fe"
-        />
-        <path
-          d="M12 36l8-16 8 16"
-          stroke="#2563eb"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="24" cy="36" r="3" fill="#2563eb" />
-      </svg>
+      <FaBicycle className="w-12 h-12 text-blue-600 drop-shadow-lg" aria-label="Bicicleta premium" />
     ),
     title: "Bicicletas Premium de Marcas Líderes",
     desc: "Pinarello, Specialized, Trek y más. Encontá la bici perfecta para tu nivel y estilo de ciclismo.",
-    more: (
-      <div>
-        Trabajamos con las marcas más prestigiosas del mundo. Asesoramiento personalizado para cada ciclista, desde principiantes hasta profesionales.
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-          <img 
-            src="/OZZimages/Pinarello2.jpg" 
-            alt="Pinarello" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-          <img 
-            src="/OZZimages/local.jpg" 
-            alt="Local OZZ" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-          <img 
-            src="/OZZimages/f7.jpg" 
-            alt="F7" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-          <img 
-            src="/OZZimages/dogma.jpg" 
-            alt="Dogma" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-          <img 
-            src="/OZZimages/bicigw3.jpg" 
-            alt="Bici GW" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-          <img 
-            src="/OZZimages/1.jpg" 
-            alt="Bici 1" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-          <video 
-            src="/OZZvideos/pasioncicli.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-        </div>
-      </div>
-    ),
+    images: [
+      "/OZZimages/bicis/Pinarello2.jpg",
+      "/OZZimages/localav.lib/local.jpg",
+      "/OZZimages/bicis/f7.jpg",
+      "/OZZimages/bicis/bicidiver.webp",
+      "/OZZimages/bicis/dogma.jpg",
+      "/OZZimages/bicis/bicigw3.webp",
+      "/OZZimages/bicis/1.webp"
+    ],
+  // videos eliminados
+    more: "Trabajamos con las marcas más prestigiosas del mundo. Asesoramiento personalizado para cada ciclista, desde principiantes hasta profesionales.",
   },
   {
     icon: (
-      <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
-        <rect
-          x="8"
-          y="8"
-          width="32"
-          height="32"
-          rx="8"
-          fill="#e0f2fe"
-          stroke="#2563eb"
-          strokeWidth="4"
-        />
-        <path
-          d="M24 16v16M16 24h16"
-          stroke="#2563eb"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-      </svg>
+      <FaTools className="w-12 h-12 text-blue-600 drop-shadow-lg" aria-label="Taller certificado" />
     ),
     title: "Taller Certificado Shimano",
     desc: "Servicio técnico oficial con mecánicos certificados. Tu bici en las mejores manos.",
-    more: (
-      <div>
-        Shimano Service Center autorizado. Reparaciones, upgrades y mantenimiento preventivo con garantía oficial. Diagnóstico gratuito y presupuesto sin compromiso.
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-          <video 
-            src="/OZZvideos/trabajando2.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-          <video 
-            src="/OZZvideos/trabajando1.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-          <video 
-            src="/OZZvideos/cuidamosbici.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-          <img 
-            src="/OZZimages/service.jpg" 
-            alt="Service" 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-          />
-        </div>
-      </div>
-    ),
+    images: [
+      "/OZZimages/taller.jpg",
+      "/OZZimages/localav.lib/service.jpg",
+      "/OZZimages/bicis/bici1.webp"
+    ],
+ 
+    more: "Shimano Service Center autorizado. Reparaciones, upgrades y mantenimiento preventivo con garantía oficial. Diagnóstico gratuito y presupuesto sin compromiso.",
   },
   {
     icon: (
-      <svg width="48" height="48" fill="none" viewBox="0 0 48 48">
-        <rect
-          x="10"
-          y="10"
-          width="28"
-          height="28"
-          rx="8"
-          fill="#e0f2fe"
-          stroke="#2563eb"
-          strokeWidth="4"
-        />
-        <path
-          d="M24 18v12M18 24h12"
-          stroke="#2563eb"
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-      </svg>
+      <FaCogs className="w-12 h-12 text-blue-600 drop-shadow-lg" aria-label="Componentes pro" />
     ),
     title: "Equipamiento y Componentes Pro",
     desc: "Todo lo que necesitás: componentes, indumentaria y accesorios de alta gama.",
-    more: (
-      <div>
-        Indumentaria técnica, cascos, luces, ruedas y componentes premium. Todo para maximizar tu rendimiento y comodidad en cada salida.
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-          <video 
-            src="/OZZvideos/zapatillasshimano.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-          <video 
-            src="/OZZvideos/Grupo electrónico de 12V ⚡️ Dura-Ace permite realizar cambios instantáneos, precisos y ultra ráp.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-          <video 
-            src="/OZZvideos/¡Vení a buscar tu Grupo Shimano 105 Di2! 📍Av. Libertador 2984.Somos el lugar que ciclista quier.mp4" 
-            controls 
-            className="rounded-lg shadow w-full h-24 object-cover aspect-video" 
-            loading="lazy"
-            preload="metadata"
-          />
-        </div>
-        <div className="mt-4 flex justify-center">
-          <img
-            src="/OZZimages/Zapatillas.jpg"
-            alt="Zapatillas de ciclismo profesionales"
-            className="rounded-lg shadow-md w-40 h-32 object-cover border border-blue-200 aspect-video"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    ),
+    images: [
+      "/OZZimages/indumentaria/Zapatillas.jpg",
+      "/OZZimages/indumentaria/mag3.jpg",
+      "/OZZimages/indumentaria/mag4.jpg",
+      "/OZZimages/localav.lib/local7.jpg",
+      "/OZZimages/localav.lib/local6.jpg",
+      "/OZZimages/localav.lib/local4.jpg"
+    ],
+  // videos eliminados
+    more: "Indumentaria técnica, cascos, luces, ruedas y componentes premium. Todo para maximizar tu rendimiento y comodidad en cada salida.",
   },
 ];
 
 const Pilares = () => {
-  const [open, setOpen] = useState([false, false, false]);
+  // Estado para el índice de imagen actual en cada card
+  const [imageIndexes, setImageIndexes] = useState([0, 0, 0]);
 
-  const handleToggle = (idx) => {
-    setOpen(open.map((v, i) => (i === idx ? !v : false)));
+  const handlePrevImage = (idx) => {
+    setImageIndexes((prev) => {
+      const newIndexes = [...prev];
+      newIndexes[idx] = (newIndexes[idx] - 1 + pilares[idx].images.length) % pilares[idx].images.length;
+      return newIndexes;
+    });
+  };
+
+  const handleNextImage = (idx) => {
+    setImageIndexes((prev) => {
+      const newIndexes = [...prev];
+      newIndexes[idx] = (newIndexes[idx] + 1) % pilares[idx].images.length;
+      return newIndexes;
+    });
   };
 
   return (
@@ -234,7 +105,7 @@ const Pilares = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 relative animate-fade-in">
             Lo que nos <span className="text-blue-500">Mueve</span>
           </h2>
-          <p className="text-xl md:text-2xl text-[#0a174e] max-w-4xl mx-auto leading-relaxed mb-8 font-light animate-fade-in delay-200">
+          <p className="text-xl md:text-2xl text-[#0a174e] max-w-4xl mx-auto leading-relaxed mb-8 font-semibold animate-fade-in delay-200">
             Tu bicicletería de confianza en Av. del Libertador 2984. Más de 15 años acompañando ciclistas con servicio técnico certificado, asesoramiento experto y las mejores marcas.
           </p>
           {/* Tarjetas */}
@@ -242,7 +113,7 @@ const Pilares = () => {
             {pilares.map((pilar, idx) => (
               <RevealOnScroll key={pilar.title} animationDelay={idx * 120}>
                 <div
-                  className="group bg-white px-4 py-6 md:px-6 md:py-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border border-blue-100 hover:border-blue-400/30 w-full max-w-xs md:max-w-sm flex-1 flex flex-col items-center min-h-[280px] md:min-h-[380px]"
+                  className="group bg-white px-2 py-4 md:px-6 md:py-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer border border-blue-100 hover:border-blue-400/30 w-full max-w-[220px] md:max-w-sm flex-1 flex flex-col items-center min-h-[180px] md:min-h-[380px]"
                   role="region"
                   aria-labelledby={`pilar-title-${idx}`}
                 >
@@ -256,44 +127,34 @@ const Pilares = () => {
                     {pilar.title}
                   </h3>
                   <p className="text-gray-700 mb-4 flex-grow text-center leading-relaxed">{pilar.desc}</p>
-                  <button
-                    className="inline-flex items-center gap-2 text-blue-500 font-semibold underline underline-offset-4 hover:text-cyan-600 transition-colors duration-200 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2 py-1"
-                    onClick={() => handleToggle(idx)}
-                    aria-expanded={open[idx]}
-                    aria-controls={`pilar-more-${idx}`}
-                  >
-                    {open[idx] ? "Mostrar menos" : "Conocé más"}
-                    <span
-                      className={`transition-transform duration-300 ${
-                        open[idx] ? "rotate-180" : ""
-                      }`}
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M6 9l6 6 6-6"
-                          stroke="#3b82f6"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                  <div
-                    id={`pilar-more-${idx}`}
-                    className={`bg-blue-50 rounded-lg text-blue-900 text-sm shadow-inner transition-all duration-500 overflow-hidden w-full ${
-                      open[idx]
-                        ? "max-h-[600px] opacity-100 p-4"
-                        : "max-h-0 opacity-0 p-0"
-                    }`}
-                    aria-hidden={!open[idx]}
-                  >
-                    {open[idx] && pilar.more}
+                  {/* Slider/carousel compacto de imágenes */}
+                  <div className="w-full flex justify-center items-center mb-4">
+                    <div className="relative w-40 h-24 flex items-center">
+                      {pilar.images.length > 1 && (
+                        <button
+                          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-1 text-blue-600 shadow hover:bg-blue-100 transition-all z-10"
+                          onClick={() => handlePrevImage(idx)}
+                          aria-label="Imagen anterior"
+                        >
+                          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </button>
+                      )}
+                      <img
+                        src={pilar.images[imageIndexes[idx]]}
+                        alt={pilar.title}
+                        className="rounded-lg shadow w-full h-full object-cover aspect-video transition-all duration-500"
+                        loading="lazy"
+                      />
+                      {pilar.images.length > 1 && (
+                        <button
+                          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 rounded-full p-1 text-blue-600 shadow hover:bg-blue-100 transition-all z-10"
+                          onClick={() => handleNextImage(idx)}
+                          aria-label="Imagen siguiente"
+                        >
+                          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </RevealOnScroll>
