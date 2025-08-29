@@ -83,7 +83,7 @@ export default function HeroSection() {
 			style={{ zIndex: 1, marginTop: 0, paddingTop: 0 }}
 		>
 			{/* Carrusel de Imágenes y Videos de Fondo */}
-			<div className="mt-12 absolute inset-0">
+			<div className="mt-24 absolute inset-0">
 				{slides.map((slide, index) => (
 					<div
 						key={slide.id}
@@ -94,14 +94,15 @@ export default function HeroSection() {
 						}`}
 					>
 						<div className="relative w-full h-full">
-							{/* Fondo difuminado */}
-							<div className="mt-24 absolute inset-0 overflow-hidden">
-								<img
-									src={slide.src}
-									alt=""
-									className="w-full h-full object-cover scale-10 blur-[1px] opacity-75"
-								/>
-							</div>
+															{/* Fondo difuminado igual para todas las imágenes */}
+															<div className="mt-8 absolute inset-0 overflow-hidden">
+																<img
+																	src={slide.src}
+																	alt=""
+																	className="w-full h-full object-cover scale-110 blur-[2px] opacity-80"
+																	style={{ filter: 'brightness(0.95) contrast(1.08)' }}
+																/>
+															</div>
 							
 							{/* Gradientes mejorados */}
 							<div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
@@ -164,7 +165,7 @@ export default function HeroSection() {
 			></div>
 
 			{/* TÍTULO PRINCIPAL MEJORADO */}
-			   <div className="absolute top-0 left-0 right-0 z-20 pt-20 lg:pt-24">
+			<div className="absolute top-0 left-0 right-0 z-20 pt-20 sm:pt-24 md:pt-16 lg:pt-12">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center space-y-3 sm:space-y-4">
 						<div className="mt-24 space-y-6">
@@ -176,9 +177,8 @@ export default function HeroSection() {
 										<span className="block text-blue-400">Pasión por el Ciclismo</span>
 									</h1>
 								</div>
-								
 								{/* Título principal con efectos mejorados */}
-									   <h1 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight mt-0 md:mt-16 lg:mt-24">
+								<h1 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight mt-0 md:mt-16 lg:mt-24">
 									<span
 										className={`block text-white transition-all duration-1000 transform ${
 											isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -190,7 +190,6 @@ export default function HeroSection() {
 									>
 										OZZ<span className="text-cyan-400 animate-pulse">cycling</span>
 									</span>
-									
 									<span
 										className={`block bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400 transition-all duration-1000 delay-300 transform ${
 											isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -205,7 +204,6 @@ export default function HeroSection() {
 									</span>
 								</h1>
 							</div>
-
 							{/* Línea decorativa animada */}
 							<div className={`flex justify-center transition-all duration-1000 delay-500 ${
 								isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
@@ -215,7 +213,8 @@ export default function HeroSection() {
 									<div className="absolute inset-0 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full blur-sm opacity-75"></div>
 									<div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
 								</div>
-							</div></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -284,58 +283,6 @@ export default function HeroSection() {
 				/>
 			</div>
 
-			<style>{`
-				@keyframes gradientShift {
-					0%, 100% {
-						background-position: 0% 50%;
-					}
-					50% {
-						background-position: 100% 50%;
-					}
-				}
-				
-				.animate-fadeInUp {
-					animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
-				}
-				.animate-fadeInUp.delay-200 {
-					animation-delay: .2s;
-				}
-				.animate-fadeInUp.delay-300 {
-					animation-delay: .3s;
-				}
-				.animate-fadeInUp.delay-400 {
-					animation-delay: .4s;
-				}
-				.animate-fadeInUp.delay-500 {
-					animation-delay: .5s;
-				}
-				.animate-fadeInUp.delay-600 {
-					animation-delay: .6s;
-				}
-				
-				@keyframes fadeInUp {
-					from { opacity: 0; transform: translateY(30px);}
-					to { opacity: 1; transform: translateY(0);}
-				}
-				
-				.animate-pulse {
-					animation: pulseSlow 6s ease-in-out infinite alternate;
-				}
-				.animate-pulse.delay-1000 {
-					animation-delay: 1s;
-				}
-				.animate-pulse.delay-500 {
-					animation-delay: .5s;
-				}
-				.animate-pulse.delay-2000 {
-					animation-delay: 2s;
-				}
-				
-				@keyframes pulseSlow {
-					0% { transform: scale(1);}
-					100% { transform: scale(1.15);}
-				}
-			`}</style>
 		</section>
 	);
 }

@@ -1,0 +1,54 @@
+/* ==========================
+	 BannerCarousel Styles
+	 ========================== */
+
+@keyframes gradientShift {
+	0%, 100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
+.animate-fadeInUp {
+	animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
+}
+.animate-fadeInUp.delay-200 {
+	animation-delay: .2s;
+}
+.animate-fadeInUp.delay-300 {
+	animation-delay: .3s;
+}
+.animate-fadeInUp.delay-400 {
+	animation-delay: .4s;
+}
+.animate-fadeInUp.delay-500 {
+	animation-delay: .5s;
+}
+.animate-fadeInUp.delay-600 {
+	animation-delay: .6s;
+}
+
+@keyframes fadeInUp {
+	from { opacity: 0; transform: translateY(30px);}
+	to { opacity: 1; transform: translateY(0);}
+}
+
+.animate-pulse {
+	animation: pulseSlow 6s ease-in-out infinite alternate;
+}
+.animate-pulse.delay-1000 {
+	animation-delay: 1s;
+}
+.animate-pulse.delay-500 {
+	animation-delay: .5s;
+}
+.animate-pulse.delay-2000 {
+	animation-delay: 2s;
+}
+
+@keyframes pulseSlow {
+	0% { transform: scale(1);}
+	100% { transform: scale(1.15);}
+}
