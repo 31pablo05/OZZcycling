@@ -178,7 +178,7 @@ function Footer() {
               <div className="text-blue-200 text-xs flex items-center gap-2">
                 Desarrollado con 
                 <span className="text-red-400 animate-pulse text-sm" aria-label="amor" role="img">❤️</span> 
-                por <span className="font-semibold text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text">Pablo Proboste</span>
+                por <a href="https://dev-craft-lake.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-semibold text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text hover:underline">Pablo Proboste</a>
               </div>
               
               <div className="hidden sm:block w-px h-4 bg-white/20"></div>
