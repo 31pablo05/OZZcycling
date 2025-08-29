@@ -70,13 +70,14 @@ const Nosotros = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-12">
         {/* Header Premium */}
         <div className="text-center mb-20 mt-16">
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-full border border-blue-400/30 mb-8 backdrop-blur-sm">
-            <span className="text-blue-300 text-sm font-semibold tracking-wider">🚴‍♂️ BICICLETERÍA DE ALTA GAMA</span>
-          </div>
+          
           <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight">
             Sobre 
             <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent"> Nosotros</span>
           </h1>
+          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-700/20 to-cyan-600/20 rounded-full border border-blue-400/30 mb-8 backdrop-blur-sm">
+            <span className="text-blue-300 text-sm font-semibold tracking-wider">🚴‍♂️ OZZCYCLING</span>
+          </div>
           <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
             Más que una bicicletería, somos el epicentro del ciclismo premium en Buenos Aires
           </p>
@@ -114,7 +115,7 @@ const Nosotros = () => {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Nuestro <span className="text-blue-400">Showroom</span> de Élite
+              Nuestro <span className="text-blue-700">Showroom</span> de Élite
             </h2>
             <p className="text-slate-300 text-lg max-w-2xl mx-auto">
               Un espacio diseñado para los ciclistas más exigentes del mundo
@@ -192,9 +193,14 @@ const Nosotros = () => {
               <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-xl p-6 backdrop-blur-sm border border-blue-500/30 text-center">
                 <h4 className="text-white font-bold mb-2">¿Listo para la experiencia premium?</h4>
                 <p className="text-slate-300 text-sm mb-4">Descubrí por qué somos la elección de los profesionales</p>
-                <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 shadow-lg">
+                <a
+                  href="https://share.google/PwI0UEPV0y3V72XHV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 shadow-lg inline-block"
+                >
                   Visitanos
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -204,7 +210,7 @@ const Nosotros = () => {
         <div className="mb-16">
           <div className="bg-gradient-to-br from-white/90 to-slate-50/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 md:p-12 border border-white/20">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
                 La Excelencia en Cada Detalle
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full mb-8"></div>
@@ -295,9 +301,12 @@ const Nosotros = () => {
                   <p className="text-slate-300 mb-6 text-lg max-w-2xl mx-auto">
                     Descubrí por qué los ciclistas más exigentes eligen OZZcycling como su partner de confianza
                   </p>
-                  <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 transform hover:scale-105">
+                  <a
+                    href="/contacto"
+                    className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 transform hover:scale-105 inline-block"
+                  >
                     Experimentá la Diferencia Premium
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -305,31 +314,7 @@ const Nosotros = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-          animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
-        }
-        
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
-        }
-        
-        @media (max-width: 768px) {
-          .grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
+  
     </section>
   );
 };

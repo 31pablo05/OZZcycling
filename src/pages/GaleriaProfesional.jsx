@@ -29,7 +29,7 @@ const galleryData = {
           description: "Celebrando junto al equipo profesional"
         },
         
-          ,
+          
           {
             type: "image",
             src: "/OZZimages/omazz/teamozz3.jpg",

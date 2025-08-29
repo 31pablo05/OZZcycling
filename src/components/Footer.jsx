@@ -124,7 +124,12 @@ function Footer() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
                   Contactar
                 </a>
-                <a href="#ubicacion" className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 border border-white/20 hover:border-white/30">
+                <a
+                  href="https://www.google.com/maps?q=Av.+del+Libertador+2984,+Buenos+Aires,+Argentina"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 border border-white/20 hover:border-white/30"
+                >
                   <FaMapMarkerAlt className="w-4 h-4" />
                   Ver Ubicación
                 </a>
@@ -205,25 +210,7 @@ function Footer() {
         </div>
       </div>
 
-      <style jsx>{`
-        .animate-fade-in {
-          animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
-        }
-        @keyframes fadeInUp {
-          from { 
-            opacity: 0; 
-            transform: translateY(30px);
-          }
-          to { 
-            opacity: 1; 
-            transform: translateY(0);
-          }
-        }
-        .bg-grid-pattern {
-          background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-          background-size: 20px 20px;
-        }
-      `}</style>
+  
     </footer>
   );
 }
