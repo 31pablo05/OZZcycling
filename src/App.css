@@ -11,6 +11,16 @@
 	}
 }
 
+/* ==========================
+   Nosotros Component Styles
+   ========================== */
+/* Usa .animate-fade-in y @keyframes fadeInUp para animaciones RevealOnScroll y decorativos en Nosotros */
+
+/* ==========================
+   Footer Component Styles
+   ========================== */
+/* Usa .animate-fade-in, @keyframes fadeInUp y .bg-grid-pattern para decorativos y animaciones en Footer */
+
 .animate-fadeInUp {
 	animation: fadeInUp 1s cubic-bezier(.4,0,.2,1) both;
 }

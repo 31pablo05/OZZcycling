@@ -28,7 +28,7 @@ const products = [
     category: "accesorios",
     image: "/OZZimages/productos/product3.jpg",
     description: "Inflador portátil compacto y liviano, con eficiente mango de material compuesto.\n\nConstruido en aluminio CNC con tratamiento especial para aplicaciones de alta presión.",
-    inStock: false,
+    inStock: true,
     rating: 4.9,
   },
   {

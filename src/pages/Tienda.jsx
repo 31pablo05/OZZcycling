@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect, useRef } from "react"
 // Carrusel de videos verticales para el local
 function VideoCarousel() {
@@ -77,6 +75,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Separator } from "@/components/ui/separator"
 import { ShoppingCart, Star, Heart, Search, Phone, MessageCircle, Plus, Minus, X } from "lucide-react"
 import FooterInfo from "../components/footerInfo"
+import InstruccionesCompra from "../components/InstruccionesCompra"
 
 const categories = [
   { id: "todas", name: "Todas las categorías", icon: "🏪" },
@@ -123,13 +122,18 @@ const Tienda = () => {
     localStorage.setItem("ozz-favorites", JSON.stringify(Array.from(favorites)))
   }, [favorites])
 
+  // Exclude products with 'sin stock' in their name or description
   const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === "todas" || product.category === selectedCategory
+    const isOutOfStock =
+      product.name.toLowerCase().includes("sin stock") ||
+      product.description.toLowerCase().includes("sin stock")
+    if (isOutOfStock) return false;
+    const matchesCategory = selectedCategory === "todas" || product.category === selectedCategory;
     const matchesSearch =
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
+      product.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat("es-AR", {
@@ -246,10 +250,25 @@ const Tienda = () => {
 
   return (
     <div className="mt-32 min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Floating Cart Button */}
+      {cart.length > 0 && (
+        <button
+          onClick={() => setShowCart(true)}
+          className="fixed bottom-6 right-6 z-40 bg-blue-600 text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 hover:bg-blue-700 transition-all duration-300 border-4 border-white/20"
+          aria-label="Abrir carrito"
+        >
+          <ShoppingCart className="w-6 h-6" />
+          <span className="font-bold">Carrito</span>
+          <span className="bg-red-500 text-white text-xs rounded-full min-w-6 h-6 flex items-center justify-center px-2 ml-1">
+            {cart.reduce((sum, item) => sum + item.quantity, 0)}
+          </span>
+        </button>
+      )}
       {/* Carrusel de Videos del Local */}
-      <div className="relative w-full flex items-center justify-center bg-black py-8">
+  <div className="relative w-full flex items-center justify-center bg-blue-900 py-8">
         <VideoCarousel />
       </div>
+      <InstruccionesCompra />
 {/* Agrega margen superior para evitar que la navbar lo tape */}
       <div className="px-6 py-8 mx-auto max-w-7xl mt-24">
         <div className="flex flex-col md:flex-row gap-4 mb-8">

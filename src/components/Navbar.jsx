@@ -30,8 +30,8 @@ const Navbar = () => {
   };
 
   const navClasses = scrolled 
-    ? "bg-white/95 backdrop-blur-2xl border-b border-blue-200/30 shadow-2xl shadow-blue-500/10 transition-all duration-700 fixed top-0 left-0 right-0 z-50"
-    : "bg-gradient-to-r from-blue-900/30 via-purple-900/20 to-transparent backdrop-blur-xl transition-all duration-700 fixed top-0 left-0 right-0 z-50";
+  ? "bg-blue-900/60 backdrop-blur-2xl border-b border-blue-200/30 shadow-2xl shadow-blue-500/10 transition-all duration-700 fixed top-0 left-0 right-0 z-50"
+  : "bg-gradient-to-r from-blue-900/80 via-blue-700/60 to-blue-500/40 backdrop-blur-xl transition-all duration-700 fixed top-0 left-0 right-0 z-50";
 
   const navLinks = [
     { name: "Inicio", path: "/", icon: "🏠" },
@@ -45,8 +45,8 @@ const Navbar = () => {
   // Unifica los estilos de color para todos los links
   const getColorClasses = (isActive) => {
     return isActive
-      ? 'bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 text-white shadow-blue-500/30'
-      : 'text-blue-900 hover:bg-gradient-to-r hover:from-blue-600 hover:via-cyan-500 hover:to-violet-600 hover:text-white hover:shadow-blue-500/20';
+      ? 'bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 text-white shadow-blue-500/30'
+      : 'text-blue-900 hover:bg-gradient-to-r hover:from-blue-500 hover:via-cyan-400 hover:to-blue-600 hover:text-white hover:shadow-blue-500/20';
   };
 
   const isActiveLink = (path) => {
