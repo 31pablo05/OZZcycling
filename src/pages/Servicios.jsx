@@ -301,7 +301,7 @@ const Servicios = () => {
       </section>
 
       {/* Enhanced Why Choose Us Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 relative overflow-hidden">
+  <section className="py-16 bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 relative overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute inset-0 w-full h-full"
@@ -321,15 +321,15 @@ const Servicios = () => {
           <div className="absolute bottom-40 left-1/3 w-32 h-32 border-2 border-purple-300 rounded-full"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
+        <div className="mb-32 relative max-w-7xl mx-auto px-6">
+          <div className="text-center mb-32">
             <span className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-6">
               ¿POR QUÉ NOSOTROS?
             </span>
-            <h2 className="text-5xl font-black text-slate-800 mb-6">
+            <h2 className="mt-6 text-5xl font-black text-slate-800 ">
               La Diferencia <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">OZZcycling</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-black max-w-4xl mx-auto leading-relaxed">
               <span className="font-bold text-blue-600">Shimano Service Center oficial</span> con más de 15 años especializándonos en bicicletas de alta gama. 
               Nuestro equipo de profesionales certificados brinda atención personalizada y soluciones a medida para cada ciclista.
             </p>

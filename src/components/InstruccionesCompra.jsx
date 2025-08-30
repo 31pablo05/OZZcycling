@@ -20,7 +20,7 @@ const steps = [
 ];
 
 const InstruccionesCompra = () => (
-  <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-2xl shadow-lg p-4 mb-4 max-w-4xl mx-auto border border-blue-100/40">
+  <section className="mt-12 bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-2xl shadow-lg p-4 mb-4 max-w-4xl mx-auto border border-blue-100/40">
     <h2 className="text-xl md:text-2xl font-black text-blue-700 mb-3 text-center tracking-tight">
       ¿Cómo comprar en <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">OZZcycling</span>?
     </h2>
