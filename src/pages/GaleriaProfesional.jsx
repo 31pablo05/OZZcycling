@@ -1,332 +1,110 @@
 import React, { useState, useRef, useEffect } from "react";
-import RevealOnScroll from "../components/RevealOnScroll";
 
-const galleryData = {
-  hero: {
-    type: "image",
-    src: "/OZZimages/omar-hero.jpg", // Imagen principal de Omar
-    title: "Omar Azzem",
-    subtitle: "Ciclista Profesional • Fundador OZZcycling",
-    description: "Más de 15 años de trayectoria profesional en el ciclismo de élite"
-  },
-  categories: [
-    {
-      id: "competencias-ozz",
-      title: "Competencias con Equipo OZZ",
-      icon: "🏆",
-      color: "from-blue-600 to-cyan-600",
-      items: [
-        {
-          type: "image",
-          src: "/OZZimages/competencias/teamozz2.jpg",
-          title: "Victoria en Ruta Nacional",
-          description: "Liderando el equipo OZZcycling hacia la victoria"
-        },
-        {
-          type: "image", 
-          src: "/OZZimages/omazz/teamozz1.jpg",
-          title: "Podium Equipo OZZ",
-          description: "Celebrando junto al equipo profesional"
-        },
-        
-          
-          {
-            type: "image",
-            src: "/OZZimages/omazz/teamozz3.jpg",
-            title: "Equipo OZZ en Fila",
-            description: "Trabajo en equipo y disciplina en plena competencia."
-          }
-          ,
-          {
-            type: "image",
-            src: "/OZZimages/omazz/teamozz4.jpg",
-            title: "Equipo OZZ en Fila",
-            description: "Trabajo en equipo y disciplina en plena competencia."
-          }
-          ,
-          {
-            type: "image",
-            src: "/OZZimages/omazz/OZZ en Italia 🇮🇹.jpg",
-            title: "Equipo OZZ en Italia",
-            description: "Trabajo en equipo y disciplina en plena competencia."
-          }
-          ,
-          {
-            type: "image",
-            src: "/OZZimages/omazz/comp5.jpg",
-            title: "Equipo OZZ en Fila",
-            description: "Trabajo en equipo y disciplina en plena competencia."
-          }
-      ]
-    },
-    {
-      id: "competencias-otros",
-      title: "Trayectoria en Otros Equipos",
-      icon: "🚴‍♂️",
-      color: "from-purple-600 to-blue-600",
-      items: [
-        {
-          type: "image",
-          src: "/OZZimages/competencias/comp6.jpg",
-          title: "Equipo Profesional Continental",
-          description: "Años de formación en equipos internacionales"
-        },
-        {
-          type: "image",
-          src: "/OZZimages/omazz/comp1.jpg",
-          title: "Campeonatos Nacionales",
-          description: "Representando Argentina en competencias de élite"
-        },
-         {
-          type: "image",
-          src: "/OZZimages/omazz/comp2.jpg",
-          title: "Campeonatos Nacionales",
-          description: "Representando Argentina en competencias de élite"
-        },
-         {
-          type: "image",
-          src: "/OZZimages/competencias/comp8.jpg",
-          title: "Campeonatos Nacionales",
-          description: "Representando Argentina en competencias de élite"
-        },
-        {
-          type: "video",
-          src: "/OZZvideos/500millas.mp4",
-          title: "Estrategia de Carrera",
-          description: "Dirigiendo la estrategia del equipo durante la competencia"
-        }
-      ]
-    },
-    {
-      id: "bragado-victories",
-      title: "Victorias en Bragado",
-      icon: "🥇",
-      color: "from-yellow-500 to-orange-600",
-      items: [
-        {
-          type: "video",
-          src: "/OZZvideos/bragado-victoria-1.mp4",
-          title: "La Victoria Épica de Bragado",
-          description: "El momento que marcó la historia de OZZcycling"
-        },
-        {
-          type: "image",
-          src: "/OZZimages/bragado-1.jpg",
-          title: "Cruzando la Meta",
-          description: "El momento de gloria en la carrera más importante"
-        },
-        {
-          type: "video",
-          src: "/OZZvideos/bragado-celebracion.mp4",
-          title: "Celebración Histórica",
-          description: "La emoción pura del triunfo profesional"
-        }
-      ]
-    },
-    {
-      id: "momentos-unicos",
-      title: "Momentos Únicos",
-      icon: "✨",
-      color: "from-cyan-600 to-teal-600",
-      items: [
-        {
-          type: "image",
-          src: "/OZZimages/momento-unico-1.jpg",
-          title: "Detrás de Escena",
-          description: "La preparación y dedicación de un profesional"
-        },
-        {
-          type: "video",
-          src: "/OZZvideos/momento-unico-1.mp4",
-          title: "Pasión por el Ciclismo",
-          description: "La esencia que inspira a toda la comunidad OZZ"
-        },
-        {
-          type: "image",
-          src: "/OZZimages/momento-unico-2.jpg",
-          title: "Mentoría Profesional",
-          description: "Transmitiendo conocimiento a las nuevas generaciones"
-        }
-      ]
-    }
-  ]
-};
+import allMedia from "./MediaData";
 
 const GaleriaProfesional = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [selectedMedia, setSelectedMedia] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalVideoRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
 
-  // Open modal for selected media in current category
-  const openModal = (item, itemIndex) => {
-    setSelectedMedia({ ...item, itemIndex });
-    setIsModalOpen(true);
+  // Navegación del carrusel
+  const goTo = (idx) => {
+    setCurrentIndex(idx);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedMedia(null);
-    if (modalVideoRef.current) {
-      modalVideoRef.current.pause();
-    }
+  const goNext = () => {
+    const nextIndex = (currentIndex + 1) % allMedia.length;
+    goTo(nextIndex);
   };
 
-  // Only navigate within current category
-  const navigateMedia = React.useCallback((direction) => {
-    if (!selectedMedia || activeCategory === null) return;
-    const items = galleryData.categories[activeCategory].items;
-    const currentIndex = selectedMedia.itemIndex;
-    let newIndex;
-    if (direction === 'next') {
-      newIndex = (currentIndex + 1) % items.length;
-    } else {
-      newIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
-    }
-    const newItem = items[newIndex];
-    setSelectedMedia({ ...newItem, itemIndex: newIndex });
-  }, [selectedMedia, activeCategory]);
+  const goPrev = () => {
+    const prevIndex = currentIndex === 0 ? allMedia.length - 1 : currentIndex - 1;
+    goTo(prevIndex);
+  };
 
+  // Auto-scroll cada 5 segundos (solo para imágenes)
   useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (!isModalOpen) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft') navigateMedia('prev');
-      if (e.key === 'ArrowRight') navigateMedia('next');
+    const interval = setInterval(() => {
+      if (allMedia[currentIndex].type === 'image' && !isPlaying) {
+        goNext();
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [currentIndex, isPlaying]);
+
+  // Control de teclado
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "Escape") setIsPlaying(false);
     };
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isModalOpen, selectedMedia, navigateMedia]);
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [currentIndex]);
+
+  // Pausar video al cambiar
+  useEffect(() => {
+    if (videoRef.current && allMedia[currentIndex].type === 'video') {
+      videoRef.current.load();
+      setIsPlaying(false);
+    }
+  }, [currentIndex]);
+
+  const currentItem = allMedia[currentIndex];
 
   return (
-    <section className="mt-32 relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 overflow-hidden">
-      {/* Fondo artístico animado */}
+    <section className="mt-32 relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 overflow-hidden">
+      {/* Fondo animado mejorado */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-16 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-purple-400/5 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-400/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-purple-500/8 rounded-full blur-2xl animate-pulse delay-2000"></div>
         
-        {/* Patrón geométrico sutil */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-full h-full" 
-               style={{
-                 backgroundImage: `radial-gradient(circle at 25% 25%, #3b82f6 2px, transparent 2px),
-                                   radial-gradient(circle at 75% 75%, #06b6d4 2px, transparent 2px)`,
-                 backgroundSize: '50px 50px'
-               }}>
-          </div>
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" 
+             style={{
+               backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+               backgroundSize: '50px 50px'
+             }}>
         </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-12">
-        {/* Header Hero */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-full border border-blue-400/30 mb-8 backdrop-blur-sm">
-            <span className="text-blue-300 text-sm font-semibold tracking-wider">🏆 LEGADO PROFESIONAL</span>
+        {/* Header elegante */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600/20 via-cyan-600/20 to-purple-600/20 rounded-full border border-blue-400/30 mb-8 backdrop-blur-md">
+            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+            <span className="text-blue-300 text-sm font-semibold tracking-wider uppercase">Legado Profesional</span>
+            <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-500"></div>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
-              Omar Azzem
-            </span>
+          <h1 className="text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text mb-6 tracking-tight leading-none">
+            Omar Azzem
           </h1>
           
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-            <div className="px-4 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 rounded-full border border-blue-400/40 backdrop-blur-sm">
-              <span className="text-blue-200 font-semibold">Ciclista Profesional</span>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="px-6 py-3 bg-gradient-to-r from-blue-600/40 to-cyan-600/40 rounded-full border border-blue-400/50 backdrop-blur-sm">
+              <span className="text-blue-100 font-semibold text-lg">🏆 Ciclista Profesional</span>
             </div>
-            <div className="hidden md:block w-2 h-2 bg-blue-400 rounded-full"></div>
-            <div className="px-4 py-2 bg-gradient-to-r from-purple-600/30 to-blue-600/30 rounded-full border border-purple-400/40 backdrop-blur-sm">
-              <span className="text-purple-200 font-semibold">Fundador OZZcycling</span>
+            <div className="px-6 py-3 bg-gradient-to-r from-purple-600/40 to-blue-600/40 rounded-full border border-purple-400/50 backdrop-blur-sm">
+              <span className="text-purple-100 font-semibold text-lg">⚡ Fundador OZZcycling</span>
             </div>
           </div>
           
           <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-            Una trayectoria de excelencia que inspira cada aspecto de OZZcycling
+            Una trayectoria que inspira excelencia en cada pedalada
           </p>
         </div>
 
-
-
-        {/* Galería por categorías con miniaturas */}
-        <div className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryData.categories.map((cat, catIdx) => (
-              <RevealOnScroll key={cat.id} animationDelay={catIdx * 120}>
-                <div
-                  className={`group relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-2xl overflow-hidden backdrop-blur-sm border border-slate-700/30 hover:border-blue-500/50 cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 ${activeCategory === catIdx ? 'ring-4 ring-blue-500/30' : ''}`}
-                  onClick={() => setActiveCategory(activeCategory === catIdx ? null : catIdx)}
-                >
-                  <div className="p-6 flex flex-col items-center">
-                    <span className="text-3xl mb-2">{cat.icon}</span>
-                    <h3 className="text-white font-bold text-lg mb-2 group-hover:text-blue-300 transition-colors text-center">{cat.title}</h3>
-                  </div>
-                  {/* Miniaturas desplegadas si está activa */}
-                  {activeCategory === catIdx && (
-                    <div className="px-4 pb-4">
-                      <div className="flex flex-wrap gap-4 justify-center">
-                        {cat.items.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className="w-24 h-24 rounded-xl overflow-hidden border-2 border-blue-400/30 bg-slate-900 cursor-pointer hover:scale-105 transition-transform duration-200 flex items-center justify-center"
-                            onClick={(e) => { e.stopPropagation(); openModal(item, idx); }}
-                          >
-                            {item.type === 'video' ? (
-                              <video src={item.src} className="w-full h-full object-cover" muted preload="metadata" />
-                            ) : (
-                              <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-
-        {/* Sección de legado */}
-        <div className="text-center">
-          <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-3xl p-12 backdrop-blur-sm border border-slate-700/30 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-cyan-600/5"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                El <span className="text-blue-400">Legado</span> Continúa
-              </h2>
-              <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Cada victoria, cada momento único, cada experiencia profesional se refleja en la excelencia 
-                que caracteriza a OZZcycling. La pasión de Omar por el ciclismo es el alma de nuestra bicicletería.
-              </p>
-              
-              <div className="grid md:grid-cols-3 gap-8 mt-12">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-400 mb-2">15+</div>
-                  <div className="text-slate-400">Años Profesionales</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-cyan-400 mb-2">50+</div>
-                  <div className="text-slate-400">Victorias Profesionales</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-purple-400 mb-2">1000+</div>
-                  <div className="text-slate-400">Ciclistas Inspirados</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Modal de visualización completa */}
-      {isModalOpen && selectedMedia && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4">
-          <div className="relative max-w-6xl max-h-[90vh] w-full">
-            {/* Botones de navegación */}
+        {/* Carrusel principal */}
+        <div className="relative mb-12">
+          <div className="relative w-full max-w-5xl mx-auto aspect-[16/10] bg-black/80 rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 group">
+            {/* Controles de navegación */}
             <button
-              onClick={() => navigateMedia('prev')}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-sm transition-all"
+              onClick={goPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+              aria-label="Anterior"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -334,65 +112,156 @@ const GaleriaProfesional = () => {
             </button>
             
             <button
-              onClick={() => navigateMedia('next')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full backdrop-blur-sm transition-all"
+              onClick={goNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+              aria-label="Siguiente"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
 
-            {/* Botón de cierre */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-20 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur-sm transition-all"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            {/* Indicador de tipo de media */}
+            <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/70 rounded-full backdrop-blur-sm">
+              <span className="text-white text-sm font-medium">
+                {currentItem.type === 'video' ? '📹' : '📸'} {currentIndex + 1}/{allMedia.length}
+              </span>
+            </div>
 
-            {/* Contenido del modal */}
-            <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 rounded-2xl overflow-hidden backdrop-blur-lg border border-slate-700/50">
-              <div className="relative">
-                {selectedMedia.type === 'video' ? (
-                  <video
-                    ref={modalVideoRef}
-                    src={selectedMedia.src}
-                    controls
-                    autoPlay
-                    className="w-full max-h-[70vh] object-contain bg-black"
-                  >
-                    Tu navegador no soporta el video.
-                  </video>
-                ) : (
-                  <img
-                    src={selectedMedia.src}
-                    alt={selectedMedia.title}
-                    className="w-full max-h-[70vh] object-contain bg-black"
-                  />
+            {/* Media principal */}
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 to-black">
+              {currentItem.type === "video" ? (
+                <video 
+                  ref={videoRef}
+                  src={currentItem.src} 
+                  controls 
+                  className="w-full h-full object-contain rounded-3xl"
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  onEnded={() => setIsPlaying(false)}
+                />
+              ) : (
+                <img 
+                  src={currentItem.src} 
+                  alt={currentItem.title} 
+                  className="w-full h-full object-contain rounded-3xl transition-all duration-500"
+                />
+              )}
+            </div>
+
+            {/* Overlay con información */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="text-white">
+                <h2 className="text-2xl md:text-3xl font-bold mb-2">{currentItem.title}</h2>
+                {currentItem.subtitle && (
+                  <div className="text-cyan-300 font-semibold mb-2">{currentItem.subtitle}</div>
                 )}
+                <p className="text-slate-300 text-lg leading-relaxed">{currentItem.description}</p>
               </div>
+            </div>
+          </div>
+
+          {/* Info visible permanente debajo del carrusel */}
+          <div className="text-center mt-6 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">{currentItem.title}</h2>
+            {currentItem.subtitle && (
+              <div className="text-cyan-300 font-semibold mb-3 text-lg">{currentItem.subtitle}</div>
+            )}
+            <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">{currentItem.description}</p>
+          </div>
+        </div>
+
+        {/* Grilla de miniaturas en cuadrícula */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-white text-center mb-8">Galería Completa</h3>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+            {allMedia.map((item, idx) => (
+              <div
+                key={idx}
+                className={`relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                  idx === currentIndex 
+                    ? 'ring-4 ring-blue-400 ring-offset-2 ring-offset-slate-900 scale-110 shadow-2xl shadow-blue-500/25 z-10' 
+                    : 'ring-2 ring-slate-600 hover:ring-slate-500 hover:scale-105'
+                }`}
+                onClick={() => goTo(idx)}
+                aria-label={item.title}
+              >
+                {/* Thumbnail */}
+                <div className="w-full h-full bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                  {item.type === 'video' ? (
+                    <>
+                      <video 
+                        src={item.src} 
+                        className="w-full h-full object-cover" 
+                        muted 
+                        preload="metadata" 
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/90 rounded-full flex items-center justify-center">
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-black ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                  )}
+                </div>
+
+                {/* Indicador activo */}
+                {idx === currentIndex && (
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 z-20">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  </div>
+                )}
+
+                {/* Número de índice */}
+                <div className="absolute top-1 left-1 bg-black/70 text-white text-xs px-1.5 py-0.5 rounded">
+                  {idx + 1}
+                </div>
+
+                {/* Overlay con título al hover */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white text-xs font-medium truncate">{item.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Estadísticas del legado */}
+        <div className="text-center">
+          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/90 rounded-3xl p-12 backdrop-blur-md border border-slate-700/50 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-cyan-600/5 to-purple-600/5"></div>
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                El <span className="text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">Legado</span> Continúa
+              </h2>
+              <p className="text-xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+                Cada victoria, cada momento único, cada experiencia profesional se refleja en la excelencia 
+                que caracteriza a OZZcycling. La pasión de Omar por el ciclismo es el alma de nuestra filosofía.
+              </p>
               
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-white mb-2">{selectedMedia.title}</h3>
-                <p className="text-slate-300 text-lg">{selectedMedia.description}</p>
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="text-center p-6 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-2xl border border-blue-400/30">
+                  <div className="text-5xl font-black text-blue-400 mb-3">15+</div>
+                  <div className="text-slate-300 font-semibold text-lg">Años Profesionales</div>
+                </div>
+                <div className="text-center p-6 bg-gradient-to-br from-cyan-600/20 to-purple-600/20 rounded-2xl border border-cyan-400/30">
+                  <div className="text-5xl font-black text-cyan-400 mb-3">50+</div>
+                  <div className="text-slate-300 font-semibold text-lg">Victorias Registradas</div>
+                </div>
+                <div className="text-center p-6 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-2xl border border-purple-400/30">
+                  <div className="text-5xl font-black text-purple-400 mb-3">1000+</div>
+                  <div className="text-slate-300 font-semibold text-lg">Ciclistas Inspirados</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
-      <style jsx>{`
-        @keyframes fadeInScale {
-          from { opacity: 0; transform: scale(0.9); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        
-        .animate-fade-scale {
-          animation: fadeInScale 0.5s ease-out;
-        }
-      `}</style>
     </section>
   );
 };
