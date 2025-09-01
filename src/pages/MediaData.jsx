@@ -160,6 +160,11 @@ const allMedia = [
     src: "/OZZvideos/gal1.mp4",
     description: ""
   },
+   {
+    type: "video",
+    src: "/OZZvideos/sap30.mp4",
+    description: ""
+  },
   {
     type: "image",
     src: "/OZZimages/localav.lib/local2.jpg",
@@ -177,14 +182,99 @@ const allMedia = [
   },
   {
     type: "video",
-    src: "/OZZvideos/momento-unico-1.mp4",
+    src: "/OZZvideos/sap18.mp4",
     description: "La esencia que inspira a toda la comunidad OZZ"
+  }
+  
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap20.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap19.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap22.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap24.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap25.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap26.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap27.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap28.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
+  }
+  ,
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap29.jpg",
+    description: "Transmitiendo conocimiento a las nuevas generaciones"
   },
   {
     type: "image",
-    src: "/OZZimages/momento-unico-2.jpg",
-    description: "Transmitiendo conocimiento a las nuevas generaciones"
-  }
+    src: "/OZZimages/omazz/sap31.jpg",
+    description: "Imagen de la carpeta localav"
+  },
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap32.jpg",
+    description: "Imagen de la carpeta localav"
+  },
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap33.jpg",
+    description: "Imagen de la carpeta localav"
+  },
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap34.jpg",
+    description: "Imagen de la carpeta localav"
+  },
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap35.webp",
+    description: "Imagen de la carpeta localav"
+  },
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap36.jpg",
+    description: "Imagen de la carpeta localav"
+  },
+  {
+    type: "image",
+    src: "/OZZimages/omazz/sap37.jpg",
+    description: "Imagen de la carpeta localav"
+  },
 ];
 
 export default allMedia;

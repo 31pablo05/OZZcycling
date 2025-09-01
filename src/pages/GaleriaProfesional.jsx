@@ -216,10 +216,6 @@ const GaleriaProfesional = () => {
                   </div>
                 )}
 
-                {/* Número de índice */}
-                <div className="absolute top-1 left-1 bg-black/70 text-white text-xs px-1.5 py-0.5 rounded">
-                  {idx + 1}
-                </div>
 
                 {/* Overlay con título al hover */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
