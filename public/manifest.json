@@ -1,0 +1,91 @@
+{
+  "name": "OZZcycling - Bicicletería Profesional",
+  "short_name": "OZZcycling",
+  "description": "Bicicletería especializada para corredores profesionales y de elite. Herramientas exclusivas, bike fitting y todo para tu pasión ciclista.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e3a8a",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["sports", "lifestyle", "business"],
+  "screenshots": [
+    {
+      "src": "/OZZimages/screenshot-desktop.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Vista principal de OZZcycling en desktop"
+    },
+    {
+      "src": "/OZZimages/screenshot-mobile.webp", 
+      "sizes": "375x667",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Vista principal de OZZcycling en móvil"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "512x512", 
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bike Fitting",
+      "short_name": "Fitting",
+      "description": "Calculadora profesional de bike fitting",
+      "url": "/bike-fitting",
+      "icons": [
+        {
+          "src": "/LOGO/logo2.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Tienda",
+      "short_name": "Shop", 
+      "description": "Explora nuestros productos",
+      "url": "/tienda",
+      "icons": [
+        {
+          "src": "/LOGO/logo2.webp",
+          "sizes": "192x192", 
+          "type": "image/webp"
+        }
+      ]
+    },
+    {
+      "name": "Servicios",
+      "short_name": "Servicios",
+      "description": "Nuestros servicios profesionales",
+      "url": "/servicios",
+      "icons": [
+        {
+          "src": "/LOGO/logo2.webp",
+          "sizes": "192x192",
+          "type": "image/webp"
+        }
+      ]
+    }
+  ]
+}
