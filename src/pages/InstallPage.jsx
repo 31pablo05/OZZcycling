@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import InstallLinkGenerator from '../components/InstallLinkGenerator';
 
 const InstallPage = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -237,6 +238,11 @@ const InstallPage = () => {
               Envía este enlace para que otros también puedan instalar la app
             </p>
           </div>
+        </div>
+
+        {/* Generador de enlaces para administradores */}
+        <div className="mt-16">
+          <InstallLinkGenerator />
         </div>
       </div>
     </section>

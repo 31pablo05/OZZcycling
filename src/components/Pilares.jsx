@@ -162,22 +162,6 @@ const Pilares = () => {
           </div>
         </div>
 
-        {/* Cifras mejoradas */}
-        <div className="max-w-4xl mx-auto mt-16 grid md:grid-cols-3 gap-8 text-center animate-fade-in delay-600">
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100">
-            <div className="text-3xl font-bold text-blue-900 mb-2">15+</div>
-            <div className="text-gray-600 font-medium">años de experiencia</div>
-          </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100">
-            <div className="text-3xl font-bold text-blue-900 mb-2">500+</div>
-            <div className="text-gray-600 font-medium">servicios anuales</div>
-          </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-100">
-            <div className="text-3xl font-bold text-blue-900 mb-2">98%</div>
-            <div className="text-gray-600 font-medium">satisfacción del cliente</div>
-          </div>
-        </div>
-
         {/* Botón mejorado */}
         <div className="text-center mt-12 animate-fade-in delay-800">
           <a

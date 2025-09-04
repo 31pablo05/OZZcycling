@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import InstallPWA from "./components/InstallPWA";
 import InstallBanner from "./components/InstallBanner";
+import AutoInstallHandler from "./components/AutoInstallHandler";
 import Inicio from "./pages/Inicio";
 import Servicios from "./pages/Servicios";
 import Tienda from "./pages/Tienda";
@@ -31,6 +32,7 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
+        <AutoInstallHandler />
         <InstallBanner />
         <Navbar />
         <div className="flex-1">
