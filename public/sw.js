@@ -1,10 +1,10 @@
-const CACHE_NAME = 'ozzcycling-v1.0.0';
+const CACHE_NAME = 'ozzcycling-v3.0.0';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',
   '/static/css/main.css',
   '/LOGO/logo2.webp',
-  '/LOGO/Log.OZZ.webp',
+
   '/manifest.json'
 ];
 
@@ -37,6 +37,13 @@ self.addEventListener('activate', (event) => {
 
 // Interceptar requests y servir desde cache
 self.addEventListener('fetch', (event) => {
+  // No cachear en desarrollo o archivos con parámetros de timestamp
+  if (event.request.url.includes('localhost') && 
+      (event.request.url.includes('?t=') || event.request.url.includes('.jsx'))) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {

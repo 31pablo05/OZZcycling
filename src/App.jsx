@@ -18,13 +18,16 @@ import MaintenancePage from "./pages/MaintenancePage";
 import PerformancePage from "./pages/PerformancePage";
 
 function App() {
+  // Cache buster - 2025-01-04
   useEffect(() => {
-    // Registrar Service Worker
+    // Service Worker reactivado
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
           .then((registration) => {
             console.log('SW registrado con éxito: ', registration);
+            // Forzar actualización del SW
+            registration.update();
           })
           .catch((registrationError) => {
             console.log('SW registro falló: ', registrationError);
@@ -62,3 +65,4 @@ function App() {
 }
 
 export default App;
+
