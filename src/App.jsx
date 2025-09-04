@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import InstallPWA from "./components/InstallPWA";
 import InstallBanner from "./components/InstallBanner";
 import AutoInstallHandler from "./components/AutoInstallHandler";
+import AppToolsWidget from "./components/AppToolsWidget";
 import Inicio from "./pages/Inicio";
 import Servicios from "./pages/Servicios";
 import Tienda from "./pages/Tienda";
@@ -12,6 +13,9 @@ import Contacto from "./pages/Contacto";
 import Nosotros from "./pages/Nosotros"; 
 import GaleriaProfesional from "./pages/GaleriaProfesional";
 import InstallPage from "./pages/InstallPage";
+import BikeFittingPage from "./pages/BikeFittingPage";
+import MaintenancePage from "./pages/MaintenancePage";
+import PerformancePage from "./pages/PerformancePage";
 
 function App() {
   useEffect(() => {
@@ -44,10 +48,14 @@ function App() {
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/galeria" element={<GaleriaProfesional />} />
             <Route path="/instalar" element={<InstallPage />} />
+            <Route path="/bike-fitting" element={<BikeFittingPage />} />
+            <Route path="/mantenimiento" element={<MaintenancePage />} />
+            <Route path="/rendimiento" element={<PerformancePage />} />
           </Routes>
         </div>
         <Footer />
         <InstallPWA />
+        <AppToolsWidget />
       </div>
     </Router>
   );

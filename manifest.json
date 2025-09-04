@@ -76,6 +76,13 @@
   ],
   "shortcuts": [
     {
+      "name": "Bike Fitting Calculator",
+      "short_name": "Bike Fitting",
+      "description": "Calculadora profesional de bike fitting",
+      "url": "/bike-fitting",
+      "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
+    },
+    {
       "name": "Galería Profesional",
       "short_name": "Galería",
       "description": "Ver galería de bicicletas y equipamiento",
@@ -94,6 +101,20 @@
       "short_name": "Nosotros",
       "description": "Conocé más sobre OZZcycling",
       "url": "/nosotros",
+      "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Mantenimiento",
+      "short_name": "Mantenimiento",
+      "description": "Planificador de mantenimiento de bicicletas",
+      "url": "/mantenimiento",
+      "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Rendimiento",
+      "short_name": "Rendimiento",
+      "description": "Calculadora de rendimiento y análisis",
+      "url": "/rendimiento",
       "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
     }
   ]
