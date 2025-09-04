@@ -44,6 +44,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Filtrar requests problemáticos
+  if (event.request.url.startsWith('chrome-extension://') ||
+      event.request.url.startsWith('moz-extension://') ||
+      event.request.method !== 'GET') {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -63,10 +70,17 @@ self.addEventListener('fetch', (event) => {
 
           caches.open(CACHE_NAME)
             .then((cache) => {
-              cache.put(event.request, responseToCache);
+              try {
+                cache.put(event.request, responseToCache);
+              } catch (error) {
+                console.log('Error caching request:', error);
+              }
             });
 
           return response;
+        }).catch((error) => {
+          console.log('Fetch failed:', error);
+          throw error;
         });
       })
   );
