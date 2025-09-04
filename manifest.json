@@ -1,22 +1,100 @@
 {
-  "name": "OZZcycling",
+  "name": "OZZcycling - Bicicletería Especializada",
   "short_name": "OZZcycling",
-  "description": "Bicicletería especializada en corredores profesionales y de élite. Shimano Service Center certificado.",
+  "description": "Bicicletería especializada para todos los niveles: desde principiantes hasta profesionales. Shimano Service Center certificado.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#004391",
+  "theme_color": "#2563eb",
   "lang": "es",
-  "icons": [
+  "categories": ["sports", "business", "lifestyle"],
+  "screenshots": [
     {
-      "src": "/LOGO/Log.OZZ.webp",
-      "sizes": "192x192",
-      "type": "image/webp"
+      "src": "/OZZimages/screenshot-mobile.webp",
+      "sizes": "640x1136",
+      "type": "image/webp",
+      "form_factor": "narrow"
     },
     {
-      "src": "/LOGO/Log.OZZ.webp",
+      "src": "/OZZimages/screenshot-desktop.webp", 
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "72x72",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "96x96",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "128x128",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "144x144",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "152x152",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
+      "sizes": "384x384",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LOGO/logo2.webp",
       "sizes": "512x512",
-      "type": "image/webp"
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Galería Profesional",
+      "short_name": "Galería",
+      "description": "Ver galería de bicicletas y equipamiento",
+      "url": "/galeria-profesional",
+      "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contacto",
+      "short_name": "Contacto",
+      "description": "Información de contacto y ubicación",
+      "url": "/contacto",
+      "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Nosotros",
+      "short_name": "Nosotros",
+      "description": "Conocé más sobre OZZcycling",
+      "url": "/nosotros",
+      "icons": [{ "src": "/LOGO/logo2.webp", "sizes": "96x96" }]
     }
   ]
 }

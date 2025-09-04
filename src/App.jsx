@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import InstallPWA from "./components/InstallPWA";
+import InstallBanner from "./components/InstallBanner";
 import Inicio from "./pages/Inicio";
 import Servicios from "./pages/Servicios";
 import Tienda from "./pages/Tienda";
 import Contacto from "./pages/Contacto";
 import Nosotros from "./pages/Nosotros"; 
 import GaleriaProfesional from "./pages/GaleriaProfesional";
+import InstallPage from "./pages/InstallPage";
 
 function App() {
+  useEffect(() => {
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registrado con éxito: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registro falló: ', registrationError);
+          });
+      });
+    }
+  }, []);
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-       
+        <InstallBanner />
         <Navbar />
         <div className="flex-1">
           <Routes>
@@ -23,9 +41,11 @@ function App() {
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/galeria" element={<GaleriaProfesional />} />
+            <Route path="/instalar" element={<InstallPage />} />
           </Routes>
         </div>
         <Footer />
+        <InstallPWA />
       </div>
     </Router>
   );

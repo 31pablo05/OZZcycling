@@ -3,13 +3,84 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Animaciones existentes */
 @keyframes revealonscroll {
   from { opacity: 0; transform: translateY(40px) scale(0.96); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .animate-revealonscroll {
   animation: revealonscroll 0.9s cubic-bezier(.4,0,.2,1) both;
+}
+
+/* Animaciones PWA */
+@keyframes slide-down {
+  from { 
+    opacity: 0; 
+    transform: translateY(-100%); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s ease-out;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* Estilos PWA específicos */
+.pwa-install-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.pwa-install-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.pwa-install-button:active::before {
+  width: 300px;
+  height: 300px;
 }
 @layer base {
   :root {

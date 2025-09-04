@@ -40,6 +40,7 @@ const Navbar = () => {
     { name: "Tienda", path: "/tienda", icon: "🛒" },
     { name: "Galeria", path: "/galeria", icon: "📸" },
     { name: "Contacto", path: "/contacto", icon: "💬" },
+    { name: "Instalar App", path: "/instalar", icon: "📱", special: true },
   ];
 
   // Unifica los estilos de color para todos los links
@@ -160,9 +161,11 @@ const Navbar = () => {
                   }}
                   className={`
                     group relative flex items-center space-x-4 px-6 py-4 rounded-2xl font-semibold transition-all duration-500 overflow-hidden shadow-lg hover:shadow-xl
-                    ${isActiveLink(item.path) 
-                      ? `${getColorClasses(true)}` 
-                      : `text-blue-900 ${getColorClasses(false)}`
+                    ${item.special 
+                      ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white border border-green-400/30 animate-pulse-ring'
+                      : isActiveLink(item.path) 
+                        ? `${getColorClasses(true)}` 
+                        : `text-blue-900 ${getColorClasses(false)}`
                     }
                   `}
                   style={{
@@ -170,15 +173,24 @@ const Navbar = () => {
                   }}
                 >
                   {/* Fondo con brillo */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 ${
+                    item.special ? 'bg-gradient-to-r from-green-400/20 to-blue-400/20' : 'bg-gradient-to-r from-white/5 to-white/10'
+                  }`}></div>
                   
                   {/* Icono */}
-                  <span className="relative text-xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter drop-shadow-sm">
+                  <span className={`relative text-xl opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter drop-shadow-sm ${
+                    item.special ? 'animate-bounce-gentle' : ''
+                  }`}>
                     {item.icon}
                   </span>
                   
                   {/* Texto */}
                   <span className="relative tracking-wide flex-1">{item.name}</span>
+                  
+                  {/* Badge especial para app */}
+                  {item.special && (
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                  )}
                   
                   {/* Flecha */}
                   <div className="relative ml-auto">
