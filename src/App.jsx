@@ -20,20 +20,20 @@ import PerformancePage from "./pages/PerformancePage";
 function App() {
   // Cache buster - 2025-01-04
   useEffect(() => {
-    // Service Worker reactivado
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then((registration) => {
-            console.log('SW registrado con éxito: ', registration);
-            // Forzar actualización del SW
-            registration.update();
-          })
-          .catch((registrationError) => {
-            console.log('SW registro falló: ', registrationError);
-          });
-      });
-    }
+    // Service Worker desactivado temporalmente para producción
+    // if ('serviceWorker' in navigator) {
+    //   window.addEventListener('load', () => {
+    //     navigator.serviceWorker.register('/sw.js')
+    //       .then((registration) => {
+    //         console.log('SW registrado con éxito: ', registration);
+    //         // Forzar actualización del SW
+    //         registration.update();
+    //       })
+    //       .catch((registrationError) => {
+    //         console.log('SW registro falló: ', registrationError);
+    //       });
+    //   });
+    // }
   }, []);
 
   return (
