@@ -53,25 +53,7 @@ const Experiencia = () => {
     }
   }, [currentVideoIndex]);
 
-  // Reproducir automáticamente cuando la sección entra en el viewport
-  useEffect(() => {
-    const section = sectionRef.current;
-    const video = videoRef.current;
-    if (!section || !video) return;
-
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [currentVideoIndex]);
+  // Eliminado: No reproducir automáticamente el video al hacer scroll
 
   const handleVideoSelect = (index) => {
     setCurrentVideoIndex(index);

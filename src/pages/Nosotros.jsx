@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
+import NosotrosMediaCarousel from "../components/NosotrosMediaCarousel";
 
 const stats = [
   { number: "+15", label: "Años de Experiencia", icon: "🏆" },
@@ -6,43 +7,7 @@ const stats = [
   { number: "100%", label: "Satisfacción Garantizada", icon: "⭐" }
 ];
 
-const mediaContent = [
-  {
-    type: "video",
-    src: "/OZZvideos/ozzlocal.mp4",
-    title: "Nuestro Espacio Premium",
-    description: "Un recorrido por nuestras instalaciones de alta gama"
-  },
-  {
-    type: "video", 
-    src: "/OZZvideos/local.mp4",
-    title: "Ambiente OZZcycling",
-    description: "Donde la pasión por el ciclismo cobra vida"
-  },
-  {
-    type: "image",
-    src: "/OZZimages/localav.lib/local2.jpg",
-    title: "Comunidad de Élite",
-    description: "Ciclistas profesionales confían en nosotros"
-  },
-  {
-    type: "image",
-    src: "/OZZimages/localav.lib/local1.jpg", 
-    title: "Showroom Exclusivo",
-    description: "Las mejores marcas del mundo en un solo lugar"
-  }
-];
-
 const Nosotros = () => {
-  const [activeMedia, setActiveMedia] = useState(0);
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveMedia((prev) => (prev + 1) % mediaContent.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="mt-24 relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
@@ -91,7 +56,6 @@ const Nosotros = () => {
             </div>
             <div className="relative rounded-2xl overflow-hidden">
               <video
-                ref={videoRef}
                 src="/OZZvideos/holaSoy.mp4"
                 controls
                 loop
@@ -123,51 +87,10 @@ const Nosotros = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Galería principal */}
+            {/* Galería principal modularizada */}
             <div className="lg:col-span-2">
               <div className="relative bg-gradient-to-br from-slate-800/60 to-slate-900/80 rounded-2xl p-6 backdrop-blur-sm border border-slate-700/30 h-full">
-                <div className="relative rounded-xl overflow-hidden mb-4">
-                  {mediaContent[activeMedia].type === 'video' ? (
-                    <video
-                      src={mediaContent[activeMedia].src}
-                      autoPlay
-                      loop
-                      muted
-                      className="w-full h-80 md:h-96 object-cover"
-                      poster="/LOGO/logo2.webp"
-                    >
-                      Tu navegador no soporta el video.
-                    </video>
-                  ) : (
-                    <img
-                      src={mediaContent[activeMedia].src}
-                      alt={mediaContent[activeMedia].title}
-                      className="w-full h-80 md:h-96 object-cover"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-white text-xl font-bold mb-2">
-                      {mediaContent[activeMedia].title}
-                    </h3>
-                    <p className="text-slate-300 text-sm">
-                      {mediaContent[activeMedia].description}
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Indicadores */}
-                <div className="flex gap-2 justify-center">
-                  {mediaContent.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveMedia(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        activeMedia === index ? 'bg-blue-400 w-8' : 'bg-slate-500 hover:bg-slate-400'
-                      }`}
-                    />
-                  ))}
-                </div>
+                <NosotrosMediaCarousel />
               </div>
             </div>
 

@@ -73,13 +73,9 @@ const GaleriaProfesional = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-12">
         {/* Header elegante */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600/20 via-cyan-600/20 to-purple-600/20 rounded-full border border-blue-400/30 mb-8 backdrop-blur-md">
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-            <span className="text-blue-300 text-sm font-semibold tracking-wider uppercase">Legado Profesional</span>
-            <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-500"></div>
-          </div>
+ 
           
-          <h1 className="text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text mb-6 tracking-tight leading-none">
+         <h1 className="text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text mb-6 tracking-tight leading-none">
             Omar Azzem
           </h1>
           
