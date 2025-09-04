@@ -3,7 +3,7 @@
   "short_name": "OZZcycling",
   "description": "Bicicletería especializada para corredores profesionales y de elite. Herramientas exclusivas, bike fitting y todo para tu pasión ciclista.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#1e3a8a",
   "theme_color": "#3b82f6",
   "orientation": "portrait-primary",
