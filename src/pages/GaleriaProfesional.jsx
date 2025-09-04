@@ -152,19 +152,9 @@ const GaleriaProfesional = () => {
                 {currentItem.subtitle && (
                   <div className="text-cyan-300 font-semibold mb-2">{currentItem.subtitle}</div>
                 )}
-                <p className="text-slate-300 text-lg leading-relaxed">{currentItem.description}</p>
               </div>
             </div>
-          </div>
-
-          {/* Info visible permanente debajo del carrusel */}
-          <div className="text-center mt-6 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">{currentItem.title}</h2>
-            {currentItem.subtitle && (
-              <div className="text-cyan-300 font-semibold mb-3 text-lg">{currentItem.subtitle}</div>
-            )}
-            <p className="text-slate-300 text-lg max-w-3xl mx-auto leading-relaxed">{currentItem.description}</p>
-          </div>
+            </div>
         </div>
 
         {/* Grilla de miniaturas en cuadrícula */}
