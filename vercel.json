@@ -22,22 +22,9 @@
       }
     },
     {
-      "src": "/sw.js",
-      "headers": {
-        "Content-Type": "application/javascript; charset=utf-8",
-        "Cache-Control": "public, max-age=0, must-revalidate"
-      }
-    },
-    {
       "src": "/manifest.json",
       "headers": {
         "Content-Type": "application/manifest+json; charset=utf-8"
-      }
-    },
-    {
-      "src": "/install-promotion.js",
-      "headers": {
-        "Content-Type": "application/javascript; charset=utf-8"
       }
     },
     {
