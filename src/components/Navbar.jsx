@@ -379,9 +379,9 @@ const Navbar = () => {
                 
                 {/* Contenido plegable */}
                 <div className={`transition-all duration-500 ease-out overflow-hidden ${
-                  mobileToolsOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  mobileToolsOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                  <div className="space-y-2">
+                  <div className="max-h-72 overflow-y-auto space-y-2 pr-2 tools-scroll">
                     {appTools.map((tool, idx) => (
                       <Link
                         key={idx}
@@ -446,6 +446,13 @@ const Navbar = () => {
                     <span>Toca para ver {appTools.length} herramientas ↑</span>
                   </div>
                 )}
+                
+                {/* Indicador de scroll cuando está abierto */}
+                {mobileToolsOpen && (
+                  <div className="text-center text-xs text-blue-600/60 mt-3 pt-2 border-t border-blue-200/30">
+                    <span>↕️ Desliza para ver todas las herramientas</span>
+                  </div>
+                )}
               </div>
             </li>
             
@@ -480,10 +487,34 @@ const Navbar = () => {
           background: rgba(59, 130, 246, 0.7);
         }
         
+        /* Scroll personalizado para herramientas móvil */
+        .tools-scroll::-webkit-scrollbar {
+          width: 4px;
+        }
+        
+        .tools-scroll::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 6px;
+        }
+        
+        .tools-scroll::-webkit-scrollbar-thumb {
+          background: rgba(59, 130, 246, 0.4);
+          border-radius: 6px;
+        }
+        
+        .tools-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(59, 130, 246, 0.6);
+        }
+        
         /* Para Firefox */
         .mobile-menu-scroll {
           scrollbar-width: thin;
           scrollbar-color: rgba(59, 130, 246, 0.5) rgba(255, 255, 255, 0.1);
+        }
+        
+        .tools-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(59, 130, 246, 0.4) rgba(255, 255, 255, 0.1);
         }
       `}</style>
     </nav>
