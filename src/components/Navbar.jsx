@@ -39,6 +39,18 @@ const Navbar = () => {
       description: "Análisis y comparación" 
     },
     { 
+      name: "Entrenamientos", 
+      path: "/entrenamientos", 
+      icon: "⏱️", 
+      description: "Cronómetro e intervalos" 
+    },
+    { 
+      name: "Zonas + Nutrición", 
+      path: "/zonas-nutricion", 
+      icon: "🎯", 
+      description: "Zonas FC/Potencia + GPS" 
+    },
+    { 
       name: "Instalar App", 
       path: "/instalar", 
       icon: "📱", 

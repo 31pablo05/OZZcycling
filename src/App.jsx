@@ -12,6 +12,8 @@ import InstallPage from "./pages/InstallPage";
 import BikeFittingPage from "./pages/BikeFittingPage";
 import MaintenancePage from "./pages/MaintenancePage";
 import PerformancePage from "./pages/PerformancePage";
+import TrainingPage from "./pages/TrainingPage";
+import ZonesNutritionGPSPage from "./pages/ZonesNutritionGPSPage";
 
 function App() {
   // PWA components removed for stability
@@ -32,6 +34,8 @@ function App() {
             <Route path="/bike-fitting" element={<BikeFittingPage />} />
             <Route path="/mantenimiento" element={<MaintenancePage />} />
             <Route path="/rendimiento" element={<PerformancePage />} />
+            <Route path="/entrenamientos" element={<TrainingPage />} />
+            <Route path="/zonas-nutricion" element={<ZonesNutritionGPSPage />} />
           </Routes>
         </div>
         <Footer />
