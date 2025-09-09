@@ -145,7 +145,7 @@ const InstallPage = () => {
         </div>
 
         {/* Botón Principal de Instalación */}
-        {deferredPrompt && (
+        {deferredPrompt ? (
           <div className="text-center mb-8">
             <button
               onClick={handleInstall}
@@ -157,6 +157,21 @@ const InstallPage = () => {
               </span>
             </button>
             <p className="text-sm text-slate-500 mt-3">Un solo clic para instalar</p>
+          </div>
+        ) : (
+          <div className="text-center mb-8">
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+              <div className="text-2xl mb-2">🔄</div>
+              <p className="text-amber-800 font-medium">
+                Para ver el botón de instalación automática:
+              </p>
+              <ul className="text-sm text-amber-700 mt-2 space-y-1">
+                <li>• Actualiza la página (F5)</li>
+                <li>• Usa Chrome, Edge o Safari</li>
+                <li>• Verifica que estés en HTTPS</li>
+              </ul>
+            </div>
+            <p className="text-slate-600">Mientras tanto, usa las instrucciones manuales abajo ⬇️</p>
           </div>
         )}
 
