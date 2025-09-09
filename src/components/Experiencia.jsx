@@ -6,13 +6,13 @@ const videos = [
     src: "/OZZvideos/trabajando1.mp4",
     title: "Nuestro equipo en acción",
     description: "Conocé a nuestros especialistas trabajando con dedicación",
-    poster: "/LOGO/Log.OZZ.png"
+    poster: "/LOGO/logo2.webp"
   },
   {
     src: "/OZZvideos/trabajando2.mp4", 
     title: "El local y el ambiente OZZcycling",
     description: "Un recorrido por nuestro espacio y productos premium",
-    poster: "/LOGO/Log.OZZ.png"
+    poster: "/LOGO/logo2.webp"
   }
 ];
 
@@ -91,9 +91,6 @@ const Experiencia = () => {
   <div className="relative z-30 w-full max-w-7xl mx-auto px-2 py-6 md:px-4 md:py-12">
         {/* Header mejorado */}
   <div className="text-center mb-10 md:mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-blue-500/20 rounded-full border border-blue-400/30 mb-6">
-            <span className="text-blue-300 text-sm font-medium">✨ EXPERIENCIA PREMIUM</span>
-          </div>
           <h2 className="text-2xl sm:text-3xl md:text-6xl font-black text-white mb-4 md:mb-6 tracking-tight">
             Experiencia 
             <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent"> OZZcycling</span>

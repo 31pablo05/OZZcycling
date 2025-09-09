@@ -164,11 +164,11 @@ const StoreInfo = () => {
 				</div>
 				<div className="text-center mt-8">
 					<a
-						href="https://share.google/lLE1R5jYwoYKwYGMq"
-						target="_blank"
-						rel="noopener noreferrer"
-						  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-all duration-300 animate-pulse"
-						aria-label="Ver más opiniones en Google"
+									href="https://share.google/lLE1R5jYwoYKwYGMq"
+									target="_blank"
+									rel="noopener noreferrer"
+										className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 via-cyan-500 to-violet-600 text-white font-semibold rounded-full shadow-lg hover:scale-105 transition-all duration-300"
+									aria-label="Ver más opiniones en Google"
 					>
 						<FaGoogle className="text-white text-xl" />
 						Ver más opiniones en Google
