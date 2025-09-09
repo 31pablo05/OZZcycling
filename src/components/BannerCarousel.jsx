@@ -80,10 +80,10 @@ export default function HeroSection() {
 			ref={heroRef}
 			onMouseMove={handleMouseMove}
 			className="relative w-full h-screen min-h-screen flex items-center overflow-hidden"
-			style={{ zIndex: 1, marginTop: 0, paddingTop: 0 }}
+			style={{ zIndex: 1, marginTop: '80px', paddingTop: 0 }}
 		>
 			{/* Carrusel de Imágenes y Videos de Fondo */}
-			<div className="mt-24 absolute inset-0">
+			<div className="absolute inset-0">
 				{slides.map((slide, index) => (
 					<div
 						key={slide.id}
@@ -95,7 +95,7 @@ export default function HeroSection() {
 					>
 						<div className="relative w-full h-full">
 															{/* Fondo difuminado igual para todas las imágenes */}
-															<div className="mt-8 absolute inset-0 overflow-hidden">
+															<div className="absolute inset-0 overflow-hidden">
 																<img
 																	src={slide.src}
 																	alt=""
@@ -165,10 +165,10 @@ export default function HeroSection() {
 			></div>
 
 			{/* TÍTULO PRINCIPAL MEJORADO */}
-			<div className="absolute top-0 left-0 right-0 z-20 pt-20 sm:pt-24 md:pt-16 lg:pt-12">
+			<div className="absolute top-0 left-0 right-0 z-20 pt-8 sm:pt-12 md:pt-16 lg:pt-20">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="text-center space-y-3 sm:space-y-4">
-						<div className="mt-24 space-y-6">
+						<div className="space-y-6">
 							<div className="relative">
 								{/* Efecto de brillo de fondo */}
 								<div className="absolute inset-0 blur-3xl opacity-20">
@@ -178,7 +178,7 @@ export default function HeroSection() {
 									</h1>
 								</div>
 								{/* Título principal con efectos mejorados */}
-								<h1 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight mt-0 md:mt-16 lg:mt-24">
+								<h1 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-tight">
 									<span
 										className={`block text-white transition-all duration-1000 transform ${
 											isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
