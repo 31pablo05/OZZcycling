@@ -43,6 +43,16 @@ self.addEventListener('activate', (event) => {
 
 // Interceptar requests
 self.addEventListener('fetch', (event) => {
+  // Filtrar solo HTTP/HTTPS requests
+  if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
+  // Ignorar requests de extensiones de Chrome
+  if (event.request.url.startsWith('chrome-extension://')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -59,12 +69,23 @@ self.addEventListener('fetch', (event) => {
               return response;
             }
 
+            // Solo cachear GET requests
+            if (event.request.method !== 'GET') {
+              return response;
+            }
+
             // Clonar la respuesta
             const responseToCache = response.clone();
 
             caches.open(CACHE_NAME)
               .then((cache) => {
-                cache.put(event.request, responseToCache);
+                // Verificar nuevamente antes de guardar en cache
+                if (event.request.url.startsWith('http')) {
+                  cache.put(event.request, responseToCache);
+                }
+              })
+              .catch((error) => {
+                console.log('Error al guardar en cache:', error);
               });
 
             return response;
