@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Inicio from "./pages/Inicio";
@@ -15,12 +15,24 @@ import PerformancePage from "./pages/PerformancePage";
 import TrainingPage from "./pages/TrainingPage";
 import ZonesNutritionGPSPage from "./pages/ZonesNutritionGPSPage";
 
+// Componente para manejar el scroll al cambiar de página
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   // PWA components removed for stability
   
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
+        <ScrollToTop />
         <Navbar />
         <div className="flex-1">
           <Routes>

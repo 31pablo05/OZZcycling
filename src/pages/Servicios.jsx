@@ -5,13 +5,13 @@ const serviciosData = [
     id: 1,
     title: "Taller Shimano Service Center",
     img: "/OZZimages/taller.jpg",
-    desc: "Servicio técnico certificado y mantenimiento profesional para bicicletas de alta gama con garantía oficial.",
+  desc: "Servicio técnico certificado y mantenimiento profesional para bicicletas de cualquier tipo, tanto para ciclistas profesionales como amateurs, con garantía oficial.",
     tag: "Calidad garantizada",
     features: [
       "Diagnóstico computarizado avanzado",
       "Garantía oficial Shimano",
       "Repuestos 100% originales",
-      "Técnicos certificados internacionalmente"
+      
     ],
    
     duration: "24-48hs",
@@ -27,7 +27,7 @@ const serviciosData = [
     tag: "Aprendé con expertos",
     features: [
       "Clases individuales y grupales",
-      "Grupos reducidos (máx. 6 personas)",
+      "Asesoramiento personalizado",
       "Instructores UCI certificados",
       "Técnicas de competición"
     ],
@@ -45,9 +45,9 @@ const serviciosData = [
     tag: "Todo para tu bici",
     features: [
       "Marcas premium exclusivas",
-      "Financiación hasta 24 cuotas",
+      
       "Asesoramiento técnico especializado",
-      "Garantía extendida hasta 2 años"
+      "Garantía extendida "
     ],
     price: "Consultar",
     duration: "Inmediato",
@@ -142,9 +142,8 @@ const Servicios = () => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
   return (
-    <main className="mt-24 pt-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen">
+    <main className="mt-10 pt-8 md:mt-24 md:pt-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen">
       {/* Hero Section */}
       <section className="relative pt-12 pb-24 overflow-hidden">
         {/* Background Image */}
@@ -183,17 +182,17 @@ const Servicios = () => {
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className={`group bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/30 transform hover:scale-105 hover:-translate-y-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                className={`group bg-white/90 backdrop-blur-md rounded-xl p-2 md:p-3 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/30 transform hover:scale-105 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className="text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <IconComponent name={stat.icon} className="w-12 h-12 mx-auto" />
+                <div className="text-blue-600 mb-1 group-hover:scale-110 transition-transform duration-300">
+                  <IconComponent name={stat.icon} className="w-5 h-5 mx-auto" />
                 </div>
-                <div className="text-4xl md:text-5xl font-black text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                <div className="text-lg md:text-xl font-black text-slate-800 mb-0.5 group-hover:text-blue-600 transition-colors duration-300">
                   {stat.number}
                 </div>
-                <div className="text-lg font-bold text-slate-700 mb-1">{stat.label}</div>
-                <div className="text-sm text-slate-500 font-medium">{stat.detail}</div>
+                <div className="text-sm font-bold text-slate-700 mb-0">{stat.label}</div>
+                <div className="text-[10px] text-slate-500 font-medium">{stat.detail}</div>
               </div>
             ))}
           </div>
@@ -220,7 +219,7 @@ const Servicios = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             {serviciosData.map((service, index) => (
               <div
                 key={service.id}
@@ -335,20 +334,20 @@ const Servicios = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-32 md:gap-16 lg:gap-16">
             {benefits.map((benefit, index) => (
               <div 
                 key={benefit.title}
-                className={`group text-center bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 border border-white/50 transform hover:-translate-y-3 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                className={`group text-center bg-white/80 backdrop-blur-md rounded-2xl p-4 md:p-5 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/50 transform hover:-translate-y-2 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-white mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-xl">
-                  <IconComponent name={benefit.icon} className="w-10 h-10" />
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white mx-auto mb-3 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-xl">
+                  <IconComponent name={benefit.icon} className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-black text-slate-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-base font-black text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
                   {benefit.title}
                 </h3>
-                <p className="text-slate-600 leading-relaxed font-medium">{benefit.desc}</p>
+                <p className="text-xs text-slate-600 leading-relaxed font-medium">{benefit.desc}</p>
               </div>
             ))}
           </div>

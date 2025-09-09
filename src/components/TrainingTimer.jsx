@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const TrainingTimer = () => {
   // Estados principales
@@ -48,7 +48,7 @@ const TrainingTimer = () => {
   };
 
   // Sonido de beep
-  const playBeep = () => {
+  const playBeep = useCallback(() => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(() => {
@@ -56,7 +56,7 @@ const TrainingTimer = () => {
         console.log('Beep!');
       });
     }
-  };
+  }, []);
 
   // Guardar entrenamiento en historial
   const saveWorkoutToHistory = () => {
@@ -126,17 +126,17 @@ const TrainingTimer = () => {
   }, [isRunning, isPaused, mode, currentPhase, intervalConfig.workTime, intervalConfig.restTime, intervalConfig.repetitions, completedIntervals]);
 
   // Iniciar/Pausar
-  const toggleTimer = () => {
+  const toggleTimer = useCallback(() => {
     if (!isRunning) {
       setIsRunning(true);
       setIsPaused(false);
     } else {
       setIsPaused(!isPaused);
     }
-  };
+  }, [isRunning, isPaused]);
 
   // Reiniciar
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     setIsRunning(false);
     setIsPaused(false);
     setTime(0);
@@ -145,18 +145,59 @@ const TrainingTimer = () => {
     setCurrentInterval(0);
     setCurrentPhase('work');
     setCompletedIntervals(0);
-  };
+  }, []);
 
-  // Agregar lap
-  const addLap = () => {
+  // Agregar lap mejorado
+  const addLap = useCallback(() => {
+    if (!isRunning) return;
+    
     const newLap = {
       id: Date.now(),
       time: time,
       lapTime: laps.length === 0 ? time : time - laps[laps.length - 1].time,
-      timestamp: new Date().toLocaleTimeString()
+      timestamp: new Date().toLocaleTimeString(),
+      pace: laps.length === 0 ? time : time - laps[laps.length - 1].time // Para futuras mejoras
     };
     setLaps(prev => [...prev, newLap]);
-  };
+    
+    // Feedback haptico si está disponible
+    if (navigator.vibrate) {
+      navigator.vibrate(100);
+    }
+    
+    // Feedback visual/sonoro
+    playBeep();
+  }, [isRunning, time, laps, playBeep]);
+
+  // Manejar entradas de teclado para uso en bici
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      // Evitar conflictos con inputs
+      if (e.target.tagName === 'INPUT') return;
+      
+      switch(e.key.toLowerCase()) {
+        case ' ': // Espaciadora para lap
+          e.preventDefault();
+          if (mode === 'basic' && isRunning) {
+            addLap();
+          }
+          break;
+        case 'enter': // Enter para iniciar/pausar
+          e.preventDefault();
+          toggleTimer();
+          break;
+        case 'escape': // Escape para reiniciar
+          e.preventDefault();
+          resetTimer();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isRunning, mode, addLap, toggleTimer, resetTimer]);
 
   // Obtener color de fase actual
   const getPhaseColor = () => {
@@ -279,30 +320,100 @@ const TrainingTimer = () => {
             )}
 
             {/* Controles principales */}
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               <button
                 onClick={toggleTimer}
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-lg"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-base md:text-lg min-w-[120px]"
               >
                 {!isRunning ? '▶️ Iniciar' : isPaused ? '▶️ Reanudar' : '⏸️ Pausar'}
               </button>
               
               <button
                 onClick={resetTimer}
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-lg"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-base md:text-lg min-w-[120px]"
               >
                 🔄 Reiniciar
               </button>
               
-              {mode === 'basic' && isRunning && (
+              {mode === 'basic' && (
                 <button
                   onClick={addLap}
-                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-lg"
+                  disabled={!isRunning}
+                  className={`backdrop-blur-sm font-bold py-3 px-6 md:py-4 md:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-base md:text-lg min-w-[120px] ${
+                    !isRunning 
+                      ? 'bg-white/10 text-white/50 cursor-not-allowed' 
+                      : 'bg-white/20 hover:bg-white/30 text-white'
+                  }`}
                 >
                   📝 Lap
                 </button>
               )}
+              
+              {/* Botón de finalizar entrenamiento */}
+              {isRunning && mode === 'basic' && (
+                <button
+                  onClick={() => {
+                    setIsRunning(false);
+                    setIsPaused(false);
+                    saveWorkoutToHistory();
+                  }}
+                  className="bg-red-500/80 hover:bg-red-600/80 backdrop-blur-sm text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-base md:text-lg min-w-[120px]"
+                >
+                  🏁 Finalizar
+                </button>
+              )}
             </div>
+
+            {/* Controles adicionales para ciclistas */}
+            {mode === 'basic' && (
+              <div className="mt-6 pt-6 border-t border-white/20">
+                <div className="text-center mb-4">
+                  <h4 className="text-lg font-bold mb-2">🚴 Controles Rápidos para Bici</h4>
+                  <p className="text-sm opacity-90">Botones grandes para uso durante el pedaleo</p>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <button
+                    onClick={toggleTimer}
+                    className="bg-green-500/80 hover:bg-green-600/80 backdrop-blur-sm text-white font-black py-6 px-4 rounded-3xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 text-xl"
+                  >
+                    {!isRunning ? '🚀 EMPEZAR' : isPaused ? '🚀 SEGUIR' : '⏸️ PAUSA'}
+                  </button>
+                  
+                  <button
+                    onClick={addLap}
+                    disabled={!isRunning}
+                    className={`backdrop-blur-sm font-black py-6 px-4 rounded-3xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 text-xl ${
+                      !isRunning 
+                        ? 'bg-gray-500/50 text-white/50 cursor-not-allowed' 
+                        : 'bg-blue-500/80 hover:bg-blue-600/80 text-white'
+                    }`}
+                  >
+                    � VUELTA
+                  </button>
+                </div>
+                
+                {/* Estadísticas rápidas */}
+                <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+                  <div className="bg-white/10 rounded-xl py-3">
+                    <div className="text-lg font-bold">{laps.length}</div>
+                    <div className="text-xs opacity-75">Vueltas</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl py-3">
+                    <div className="text-lg font-bold">
+                      {laps.length > 0 ? formatTime(Math.floor(time / laps.length)) : '--:--'}
+                    </div>
+                    <div className="text-xs opacity-75">Promedio</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl py-3">
+                    <div className="text-lg font-bold">
+                      {laps.length > 0 ? formatTime(laps[laps.length - 1]?.lapTime || 0) : '--:--'}
+                    </div>
+                    <div className="text-xs opacity-75">Última</div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -397,20 +508,97 @@ const TrainingTimer = () => {
         {/* Laps (solo en modo básico) */}
         {mode === 'basic' && laps.length > 0 && (
           <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/50">
-            <h3 className="text-2xl font-bold text-slate-800 mb-6">📝 Tiempos Parciales</h3>
-            <div className="space-y-2 max-h-60 overflow-y-auto">
-              {laps.map((lap, index) => (
-                <div key={lap.id} className="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <span className="font-bold text-blue-600">#{index + 1}</span>
-                    <span className="text-sm text-slate-500">{lap.timestamp}</span>
-                  </div>
-                  <div className="flex gap-4 font-mono">
-                    <span className="text-slate-600">Parcial: {formatTime(lap.lapTime)}</span>
-                    <span className="font-bold">Total: {formatTime(lap.time)}</span>
-                  </div>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-slate-800">📝 Tiempos Parciales</h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setLaps([])}
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-sm font-bold transition-colors"
+                >
+                  �️ Limpiar
+                </button>
+                <button
+                  onClick={() => {
+                    const lastLap = laps[laps.length - 1];
+                    if (lastLap) {
+                      setLaps(prev => prev.slice(0, -1));
+                    }
+                  }}
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl text-sm font-bold transition-colors"
+                  disabled={laps.length === 0}
+                >
+                  ↶ Deshacer
+                </button>
+              </div>
+            </div>
+            
+            {/* Estadísticas de rendimiento */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
+              <div className="bg-blue-50 rounded-xl p-4">
+                <div className="text-2xl font-bold text-blue-600">{laps.length}</div>
+                <div className="text-sm text-blue-700">Total Vueltas</div>
+              </div>
+              <div className="bg-green-50 rounded-xl p-4">
+                <div className="text-2xl font-bold text-green-600">
+                  {laps.length > 0 ? formatTime(Math.min(...laps.map(l => l.lapTime))) : '--:--'}
                 </div>
-              ))}
+                <div className="text-sm text-green-700">Mejor Vuelta</div>
+              </div>
+              <div className="bg-orange-50 rounded-xl p-4">
+                <div className="text-2xl font-bold text-orange-600">
+                  {laps.length > 0 ? formatTime(Math.floor(time / laps.length)) : '--:--'}
+                </div>
+                <div className="text-sm text-orange-700">Promedio</div>
+              </div>
+              <div className="bg-purple-50 rounded-xl p-4">
+                <div className="text-2xl font-bold text-purple-600">
+                  {laps.length > 0 ? formatTime(laps[laps.length - 1]?.lapTime || 0) : '--:--'}
+                </div>
+                <div className="text-sm text-purple-700">Última Vuelta</div>
+              </div>
+            </div>
+            
+            <div className="space-y-2 max-h-60 overflow-y-auto">
+              {laps.map((lap, index) => {
+                const bestTime = Math.min(...laps.map(l => l.lapTime));
+                const isPersonalBest = lap.lapTime === bestTime;
+                const isRecentBest = index >= laps.length - 3 && lap.lapTime === Math.min(...laps.slice(-3).map(l => l.lapTime));
+                
+                return (
+                  <div key={lap.id} className={`flex justify-between items-center p-4 rounded-xl border-2 transition-all ${
+                    isPersonalBest 
+                      ? 'bg-yellow-50 border-yellow-300 shadow-lg' 
+                      : isRecentBest 
+                        ? 'bg-green-50 border-green-200' 
+                        : 'bg-slate-50 border-slate-200'
+                  }`}>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
+                        <span className={`font-bold text-lg ${
+                          isPersonalBest ? 'text-yellow-600' : isRecentBest ? 'text-green-600' : 'text-blue-600'
+                        }`}>
+                          #{index + 1}
+                        </span>
+                        {isPersonalBest && <span className="text-yellow-500">🏆</span>}
+                        {isRecentBest && !isPersonalBest && <span className="text-green-500">⚡</span>}
+                      </div>
+                      <span className="text-sm text-slate-500">{lap.timestamp}</span>
+                    </div>
+                    <div className="flex gap-6 font-mono text-lg">
+                      <div className="text-center">
+                        <div className={`font-bold ${isPersonalBest ? 'text-yellow-600' : isRecentBest ? 'text-green-600' : 'text-slate-600'}`}>
+                          {formatTime(lap.lapTime)}
+                        </div>
+                        <div className="text-xs text-slate-500">Parcial</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-bold text-slate-800">{formatTime(lap.time)}</div>
+                        <div className="text-xs text-slate-500">Total</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

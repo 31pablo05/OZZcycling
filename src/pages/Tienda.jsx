@@ -249,7 +249,7 @@ const Tienda = () => {
   }
 
   return (
-    <div className="mt-32 min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+  <div style={{marginTop: '80px'}} className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Floating Cart Button */}
       {cart.length > 0 && (
         <button
@@ -270,7 +270,7 @@ const Tienda = () => {
       </div>
       <InstruccionesCompra />
 {/* Agrega margen superior para evitar que la navbar lo tape */}
-      <div className="px-6 py-8 mx-auto max-w-7xl mt-24">
+  <div className="px-6 py-8 mx-auto max-w-7xl" style={{marginTop: '32px'}}>
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />

@@ -112,16 +112,7 @@ const PerformanceCalculator = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <div className="text-4xl mb-4">⚡</div>
-        <h1 className="text-3xl font-bold text-slate-900 mb-2">
-          Calculadora de Rendimiento
-        </h1>
-        <p className="text-slate-600">
-          Analiza tu rendimiento y compara componentes
-        </p>
-      </div>
+      
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Calculadora de Rendimiento */}

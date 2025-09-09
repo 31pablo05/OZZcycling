@@ -54,7 +54,7 @@ const GaleriaProfesional = () => {
   const currentItem = allMedia[currentIndex];
 
   return (
-    <section className="mt-32 relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 overflow-hidden">
+  <section style={{marginTop: '80px'}} className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 overflow-hidden">
       {/* Fondo animado mejorado */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -224,21 +224,6 @@ const GaleriaProfesional = () => {
                 Cada victoria, cada momento único, cada experiencia profesional se refleja en la excelencia 
                 que caracteriza a OZZcycling. La pasión de Omar por el ciclismo es el alma de nuestra filosofía.
               </p>
-              
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center p-6 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-2xl border border-blue-400/30">
-                  <div className="text-5xl font-black text-blue-400 mb-3">15+</div>
-                  <div className="text-slate-300 font-semibold text-lg">Años Profesionales</div>
-                </div>
-                <div className="text-center p-6 bg-gradient-to-br from-cyan-600/20 to-purple-600/20 rounded-2xl border border-cyan-400/30">
-                  <div className="text-5xl font-black text-cyan-400 mb-3">50+</div>
-                  <div className="text-slate-300 font-semibold text-lg">Victorias Registradas</div>
-                </div>
-                <div className="text-center p-6 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-2xl border border-purple-400/30">
-                  <div className="text-5xl font-black text-purple-400 mb-3">1000+</div>
-                  <div className="text-slate-300 font-semibold text-lg">Ciclistas Inspirados</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

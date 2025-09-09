@@ -148,7 +148,7 @@ const Nosotros = () => {
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2 text-sm md:text-base">Especialización Premium</h3>
                     <p className="text-slate-700 leading-relaxed text-sm md:text-base">
-                      Especializados en bicicletas de alta competición y componentes premium de las marcas más prestigiosas.
+                      Atendemos bicicletas de alta competición y componentes premium de las marcas más prestigiosas, pero también brindamos servicio a ciclistas amateurs y a quienes usan la bici como medio de transporte o recreación.
                     </p>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ const Nosotros = () => {
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2 text-sm md:text-base">Equipo Experto</h3>
                     <p className="text-slate-700 leading-relaxed text-sm md:text-base">
-                      Técnicos certificados por las principales marcas internacionales, garantizando servicio excepcional.
+                      Técnicos certificados por las principales marcas internacionales, preparados para resolver desde ajustes básicos hasta reparaciones avanzadas, siempre con la misma calidad de servicio.
                     </p>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ const Nosotros = () => {
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2 text-sm md:text-base">Tecnología Avanzada</h3>
                     <p className="text-slate-700 leading-relaxed text-sm md:text-base">
-                      Equipamiento de última generación para análisis biomecánico y mantenimiento de precisión.
+                      Equipamiento de última generación para análisis biomecánico, mantenimiento de precisión y reparaciones confiables para bicicletas de todo tipo.
                     </p>
                   </div>
                 </div>

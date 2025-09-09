@@ -3,14 +3,22 @@ import PerformanceCalculator from '../components/PerformanceCalculator';
 
 const PerformancePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-white pt-24">
-      <PerformanceCalculator />
+    <div style={{marginTop: '80px'}} className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-white py-8">
+      {/* Título principal */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+          ⚡ Calculadora de Rendimiento
+        </h1>
+        <p className="text-xl text-slate-600">
+          Analiza tu rendimiento y compara componentes
+        </p>
+      </div>
       
-      {/* Información adicional */}
-      <div className="max-w-6xl mx-auto p-6 mt-8">
-        <div className="bg-green-50 rounded-xl p-6 border border-green-200">
+      {/* Información instructiva al principio */}
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="bg-green-50 rounded-xl p-6 border border-green-200 mb-8">
           <h3 className="text-lg font-bold text-green-900 mb-4">
-            🚀 Optimiza tu Rendimiento
+            🚀 Cómo Usar la Calculadora de Rendimiento
           </h3>
           
           <div className="grid md:grid-cols-3 gap-6 text-sm text-green-800">
@@ -46,6 +54,8 @@ const PerformancePage = () => {
           </div>
         </div>
       </div>
+      
+      <PerformanceCalculator />
     </div>
   );
 };

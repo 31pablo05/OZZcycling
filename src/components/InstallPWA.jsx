@@ -70,34 +70,27 @@ const InstallPWA = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 animate-bounce">
+    <div className="fixed bottom-6 right-6 z-50">
       <button
         onClick={handleInstallClick}
-        className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-full shadow-2xl hover:from-blue-500 hover:to-cyan-500 transition-all duration-300 flex items-center gap-3 group hover:scale-105"
+        className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-5 py-3 rounded-2xl shadow-2xl hover:from-green-500 hover:to-blue-500 transition-all duration-300 flex items-center gap-3 group hover:scale-105 animate-pulse hover:animate-none"
         aria-label="Instalar aplicación OZZcycling"
       >
-        <svg 
-          className="w-6 h-6" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" 
-          />
-        </svg>
-        <span className="font-semibold text-sm">Instalar App</span>
-        <div className="absolute -top-2 -right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+        <span className="text-xl">📱</span>
+        <div className="flex flex-col items-start">
+          <span className="font-bold text-sm">Instalar App</span>
+          <span className="text-xs opacity-80">OZZcycling</span>
+        </div>
+        <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
       </button>
       
-      {/* Tooltip informativo */}
-      <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block">
-        <div className="bg-black/80 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap backdrop-blur-sm">
-          Instalar OZZcycling en tu dispositivo
-          <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/80"></div>
+      {/* Tooltip informativo mejorado */}
+      <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="bg-slate-900/95 text-white text-xs px-4 py-3 rounded-xl whitespace-nowrap backdrop-blur-sm shadow-2xl">
+          <div className="font-semibold mb-1">📱 Instalar OZZcycling</div>
+          <div className="text-slate-300">• Acceso desde pantalla de inicio</div>
+          <div className="text-slate-300">• Funciona sin internet</div>
+          <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-6 border-transparent border-t-slate-900/95"></div>
         </div>
       </div>
     </div>

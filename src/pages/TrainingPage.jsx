@@ -2,7 +2,11 @@ import React from 'react';
 import TrainingTimer from '../components/TrainingTimer';
 
 const TrainingPage = () => {
-  return <TrainingTimer />;
+  return (
+    <div style={{marginTop: '80px'}}>
+      <TrainingTimer />
+    </div>
+  );
 };
 
 export default TrainingPage;

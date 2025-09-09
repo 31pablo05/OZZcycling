@@ -22,32 +22,7 @@ const BikeFittingPage = () => {
           </p>
         </div>
 
-        {/* Beneficios de usar la herramienta */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-            <div className="text-3xl mb-4">🎯</div>
-            <h3 className="font-bold text-slate-900 mb-2">Precisión Profesional</h3>
-            <p className="text-slate-600 text-sm">
-              Algoritmos basados en métodos de fitting utilizados en talleres profesionales
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-            <div className="text-3xl mb-4">💾</div>
-            <h3 className="font-bold text-slate-900 mb-2">Guarda Múltiples Bicis</h3>
-            <p className="text-slate-600 text-sm">
-              Calcula y guarda configuraciones para diferentes tipos de bicicletas
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-            <div className="text-3xl mb-4">📱</div>
-            <h3 className="font-bold text-slate-900 mb-2">Funciona Offline</h3>
-            <p className="text-slate-600 text-sm">
-              Disponible siempre, incluso sin conexión a internet
-            </p>
-          </div>
-        </div>
+       
 
         {/* Calculadora principal */}
         <BikeFittingCalculator />
