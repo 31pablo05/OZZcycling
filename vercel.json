@@ -1,7 +1,10 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
   "rewrites": [
     {
-      "source": "/((?!assets|LOGO|OZZimages|OZZvideos|manifest\\.json|sw\\.js).*)",
+      "source": "/((?!.*\\.).*)",
       "destination": "/index.html"
     }
   ]
