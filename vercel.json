@@ -1,15 +1,8 @@
 {
-  "buildCommand": "npm run build",
-  "installCommand": "npm ci --legacy-peer-deps",
-  "framework": "vite",
-  "outputDirectory": "dist",
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!assets|LOGO|OZZimages|OZZvideos|manifest\\.json|sw\\.js).*)",
+      "destination": "/index.html"
     }
   ]
 }
