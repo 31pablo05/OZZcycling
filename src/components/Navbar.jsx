@@ -27,28 +27,10 @@ const Navbar = () => {
       description: "Calculadora profesional" 
     },
     { 
-      name: "Mantenimiento", 
-      path: "/mantenimiento", 
-      icon: "🔧", 
-      description: "Planificador y recordatorios" 
-    },
-    { 
-      name: "Rendimiento", 
-      path: "/rendimiento", 
-      icon: "⚡", 
-      description: "Análisis y comparación" 
-    },
-    { 
       name: "Entrenamientos", 
       path: "/entrenamientos", 
       icon: "⏱️", 
       description: "Cronómetro e intervalos" 
-    },
-    { 
-      name: "Zonas + Nutrición", 
-      path: "/zonas-nutricion", 
-      icon: "🎯", 
-      description: "Zonas FC/Potencia + GPS" 
     },
     { 
       name: "Instalar App", 

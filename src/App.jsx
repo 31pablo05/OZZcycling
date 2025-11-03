@@ -10,10 +10,7 @@ import Nosotros from "./pages/Nosotros";
 import GaleriaProfesional from "./pages/GaleriaProfesional";
 import InstallPage from "./pages/InstallPage";
 import BikeFittingPage from "./pages/BikeFittingPage";
-import MaintenancePage from "./pages/MaintenancePage";
-import PerformancePage from "./pages/PerformancePage";
 import TrainingPage from "./pages/TrainingPage";
-import ZonesNutritionGPSPage from "./pages/ZonesNutritionGPSPage";
 
 // Componente para manejar el scroll al cambiar de página
 function ScrollToTop() {
@@ -44,10 +41,7 @@ function App() {
             <Route path="/galeria" element={<GaleriaProfesional />} />
             <Route path="/instalar" element={<InstallPage />} />
             <Route path="/bike-fitting" element={<BikeFittingPage />} />
-            <Route path="/mantenimiento" element={<MaintenancePage />} />
-            <Route path="/rendimiento" element={<PerformancePage />} />
             <Route path="/entrenamientos" element={<TrainingPage />} />
-            <Route path="/zonas-nutricion" element={<ZonesNutritionGPSPage />} />
           </Routes>
         </div>
         <Footer />
