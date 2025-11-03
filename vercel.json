@@ -1,11 +1,15 @@
 {
-  "buildCommand": "npm ci --legacy-peer-deps && npm run build",
+  "buildCommand": "npm run build",
   "installCommand": "npm ci --legacy-peer-deps",
   "framework": "vite",
-  "rewrites": [
+  "outputDirectory": "dist",
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
