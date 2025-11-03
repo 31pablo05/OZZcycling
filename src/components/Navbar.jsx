@@ -449,7 +449,7 @@ const Navbar = () => {
       </div>
 
       {/* Estilos CSS */}
-      <style jsx>{`
+      <style>{`
         /* Scroll personalizado para menú móvil */
         .mobile-menu-scroll::-webkit-scrollbar {
           width: 6px;

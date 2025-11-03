@@ -1,9 +1,7 @@
 // Service Worker para OZZcycling PWA
-const CACHE_NAME = 'ozzcycling-v1';
+const CACHE_NAME = 'ozzcycling-v2';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json',
   '/LOGO/logo2.webp',
   '/OZZimages/bicicleteria.jpg',
@@ -53,6 +51,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // NO interceptar assets de Vite para evitar problemas de MIME type
+  if (event.request.url.includes('/assets/')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -71,6 +74,11 @@ self.addEventListener('fetch', (event) => {
 
             // Solo cachear GET requests
             if (event.request.method !== 'GET') {
+              return response;
+            }
+
+            // NO cachear archivos JS/CSS de assets para evitar problemas
+            if (event.request.url.includes('/assets/')) {
               return response;
             }
 
